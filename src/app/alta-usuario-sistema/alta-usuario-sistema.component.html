@@ -32,6 +32,15 @@
         </div><br>
         <div class="row">
             <div class="form-group col-md-4">
+                Fecha de nacimiento:&nbsp;<i style="color:red">*</i><br>
+                <input class="form-control"  type="date" formControlName="fechaNacimiento">
+                <label for="colFormLabelSm" class="col-form-label col-form-label-sm"
+                *ngIf="formularioPrincipal.get('fechaNacimiento')?.invalid && flagSubmit">
+                Este campo es requerido.&nbsp;</label>
+            </div>
+        </div> <br>
+        <div class="row">
+            <div class="form-group col-md-4">
                 Correo:&nbsp;<i style="color:red">*</i><br>
                 <input class="form-control"  type="email" formControlName="email">
                 <label for="colFormLabelSm" class="col-form-label col-form-label-sm"
@@ -54,10 +63,20 @@
                 Este campo debe tener al menos 5 caracteres.</label>
             </div>
         </div> <br>
-        <div class="row">
+        <div class="row"  *ngIf="!flagEstado">
             <div class="form-group col-md-4" style="text-align: right;">
-                <button class="btn btn-success" type="submit"><img src="./assets/descarga.png" style="width: 20px;">&nbsp;&nbsp;Grabar</button>
+                <button class="btn btn-success" type="submit" style="width: 100%;">Grabar</button>
             </div>
-        </div>        
+        </div>
+        <div class="row" *ngIf="flagEstado">
+            <div class="form-group col-md-4">
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Usuario registrado correctamente!</h4>
+                    <p>El usuario. {{ formularioPrincipal.get('nombre')?.value }} {{formularioPrincipal.get('apellido')?.value}} fue registrado correctamente</p>
+                    <hr>
+                    <p class="mb-0">Gracias por usar esta app.</p>
+                </div>       
+            </div>  
+        </div>  
     </form>
 </div>

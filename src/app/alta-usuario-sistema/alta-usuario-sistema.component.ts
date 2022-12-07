@@ -10,18 +10,20 @@ export class AltaUsuarioSistemaComponent implements OnInit {
 
   public formularioPrincipal: FormGroup;
   public flagSubmit: boolean;
+  public flagEstado: boolean;
 
   constructor(private fb : FormBuilder) { }
 
   ngOnInit(): void {
 
     this.flagSubmit = false;
+    this.flagEstado = false;
 
     this.formularioPrincipal = this.fb.group({
       nombre : ['', [Validators.required, Validators.minLength(5)]],
       apellido : ['', [Validators.required, Validators.minLength(5)]],
-      telefono : [],
-      edad : [0, [Validators.required]],
+      telefono : [''],
+      fechaNacimiento : ['', [Validators.required]],
       pass : ['',[Validators.required, Validators.minLength(5)]],
       email : ['',[Validators.required, Validators.email]]
     });
@@ -32,6 +34,10 @@ export class AltaUsuarioSistemaComponent implements OnInit {
     console.log(this.formularioPrincipal.value);
     console.log(this.formularioPrincipal.valid);
     console.log(this.formularioPrincipal);
+    if(this.formularioPrincipal.valid){
+      this.flagEstado = true;
+    }
+
 
   }
 }
