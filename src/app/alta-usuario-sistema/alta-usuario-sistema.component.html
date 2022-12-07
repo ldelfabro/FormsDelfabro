@@ -1,0 +1,63 @@
+<div style="padding: 20px;">
+    <form class="form" [formGroup]="formularioPrincipal" (ngSubmit)="submit()">
+        <div class="row">
+            <div class="form-group col-md-4">
+                Nombre:&nbsp;<i style="color:red">*</i><br>
+                <input class="form-control"  formControlName="nombre"  type="text">
+                <label for="colFormLabelSm" class="col-form-label col-form-label-sm"
+                *ngIf="formularioPrincipal.get('nombre')?.invalid && formularioPrincipal.get('nombre')?.value == '' && flagSubmit">
+                Este campo es requerido.&nbsp;</label>
+                <label for="colFormLabelSm" class="col-form-label col-form-label-sm"
+                *ngIf="formularioPrincipal.get('nombre')?.invalid && formularioPrincipal.get('nombre')?.value.length < 5 && flagSubmit">
+                Este campo debe tener al menos 5 caracteres.</label>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="form-group col-md-4">
+                Apellido:&nbsp;<i style="color:red">*</i><br>
+                <input class="form-control"  type="text" formControlName="apellido">
+                <label for="colFormLabelSm" class="col-form-label col-form-label-sm"
+                *ngIf="formularioPrincipal.get('apellido')?.invalid && formularioPrincipal.get('apellido')?.value == '' && flagSubmit">
+                Este campo es requerido.&nbsp;</label>
+                <label for="colFormLabelSm" class="col-form-label col-form-label-sm"
+                *ngIf="formularioPrincipal.get('apellido')?.invalid && formularioPrincipal.get('apellido')?.value.length < 5 && flagSubmit">
+                Este campo debe tener al menos 5 caracteres.</label>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="form-group col-md-4">
+                Teléfono:<br>
+                <input class="form-control" formControlName="telefono"  type="text">
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="form-group col-md-4">
+                Correo:&nbsp;<i style="color:red">*</i><br>
+                <input class="form-control"  type="email" formControlName="email">
+                <label for="colFormLabelSm" class="col-form-label col-form-label-sm"
+                *ngIf="formularioPrincipal.get('email')?.invalid && formularioPrincipal.get('email')?.value == '' && flagSubmit">
+                Este campo es requerido.&nbsp;</label>
+                <label for="colFormLabelSm" class="col-form-label col-form-label-sm"
+                *ngIf="formularioPrincipal.get('email')?.invalid && formularioPrincipal.get('email')?.value != '' && flagSubmit">
+                Debe especificar una casilla de correo válida.</label>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="form-group col-md-4">
+                Password:&nbsp;<i style="color:red">*</i><br>
+                <input class="form-control"  type="password" formControlName="pass">
+                <label for="colFormLabelSm" class="col-form-label col-form-label-sm"
+                *ngIf="formularioPrincipal.get('pass')?.invalid && formularioPrincipal.get('pass')?.value == '' && flagSubmit">
+                Este campo es requerido.&nbsp;</label>
+                <label for="colFormLabelSm" class="col-form-label col-form-label-sm"
+                *ngIf="formularioPrincipal.get('pass')?.invalid && formularioPrincipal.get('pass')?.value.length < 5 && flagSubmit">
+                Este campo debe tener al menos 5 caracteres.</label>
+            </div>
+        </div> <br>
+        <div class="row">
+            <div class="form-group col-md-4" style="text-align: right;">
+                <button class="btn btn-success" type="submit"><img src="./assets/descarga.png" style="width: 20px;">&nbsp;&nbsp;Grabar</button>
+            </div>
+        </div>        
+    </form>
+</div>
