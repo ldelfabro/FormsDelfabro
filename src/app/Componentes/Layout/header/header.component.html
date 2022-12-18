@@ -1,15 +1,33 @@
 <p>
     <mat-toolbar color="primary">
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>My App</span>
-      <span class="example-spacer"></span>
-      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-      </button>
+
+        <button  *ngIf="!logueado" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [matMenuTriggerFor]="menu">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <span *ngIf="logueado" >Sistema de notas: Bienvenido {{Profesor | nombreCompletoProfesor}}</span>
+        <span *ngIf="!logueado">Sistema de notas</span>
+        <span class="example-spacer"></span>       
+        <button *ngIf="!logueado" mat-flat-button (click)="Loguear()">Login</button>&nbsp;&nbsp;
+        <button *ngIf="!logueado" mat-flat-button (click)="Registrar()">Registrarse</button>
+        <button *ngIf="logueado" mat-flat-button (click)="Desloguear()">Cerrar sessión</button>
     </mat-toolbar>
-  </p>
+</p>
+<div class="alert alert-danger" role="alert" *ngIf="errorMessage != ''" >
+    {{errorMessage}}
+</div>
+
+<mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>dialpad</mat-icon>
+      <span>Listado de Profesores</span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Control de Alumnos</span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Control de Materias</span>
+    </button> 
+</mat-menu>

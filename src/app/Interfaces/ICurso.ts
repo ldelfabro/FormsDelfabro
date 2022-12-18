@@ -8,6 +8,7 @@ export interface Curso {
     nombre : string,
     alumnos : Alumno [],
     materias : Materia[],
+    profesores : Profesor [],
     notas : Nota [],
     profesor : Profesor,
 }
