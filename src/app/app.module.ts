@@ -14,6 +14,7 @@ import { ModalRegistrarComponent } from './Componentes/Layout/modal-registrar/mo
 import { ModalLoguearComponent } from './Componentes/Layout/modal-loguear/modal-loguear.component';
 import { NombreCompletoProfesorPipe } from './Pipes/nombre-completo-profesor.pipe';
 import { NombreCompletoAlumnoPipe } from './Pipes/nombre-completo-alumno.pipe';
+import { FooterComponent } from './Componentes/Layout/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NombreCompletoAlumnoPipe } from './Pipes/nombre-completo-alumno.pipe';
     ModalRegistrarComponent,
     ModalLoguearComponent,
     NombreCompletoProfesorPipe,
-    NombreCompletoAlumnoPipe
+    NombreCompletoAlumnoPipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
