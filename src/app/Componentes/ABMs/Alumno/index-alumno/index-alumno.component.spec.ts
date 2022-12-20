@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AltaUsuarioSistemaComponent } from './alta-usuario-sistema.component';
+import { IndexAlumnoComponent } from './index-alumno.component';
 
-describe('AltaUsuarioSistemaComponent', () => {
-  let component: AltaUsuarioSistemaComponent;
-  let fixture: ComponentFixture<AltaUsuarioSistemaComponent>;
+describe('IndexAlumnoComponent', () => {
+  let component: IndexAlumnoComponent;
+  let fixture: ComponentFixture<IndexAlumnoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AltaUsuarioSistemaComponent ]
+      declarations: [ IndexAlumnoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AltaUsuarioSistemaComponent);
+    fixture = TestBed.createComponent(IndexAlumnoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { ModalRegistrarComponent } from '../modal-registrar/modal-registrar.component';
 import { Profesor } from 'src/app/Interfaces/IProfesor';
@@ -14,6 +14,8 @@ export class HeaderComponent implements OnInit {
   @Input() Profesor : Profesor;
   @Input() Profesores : Profesor [];
 
+  @Output() evento = new EventEmitter<string>();
+
   public logueado = false;
   public flagLogin = false;
   public flagLoginError = false;
@@ -23,8 +25,15 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  abmProfesor() : void {
+    this.evento.emit("ABMPROFESOR");
+  }
+  abmAlumno() : void {
+    this.evento.emit("ABMALUMNO");
+  }
   Desloguear() : void{
     this.logueado = false;
+    this.evento.emit("ABMINICIO");
   }
 
   Loguear() : void {

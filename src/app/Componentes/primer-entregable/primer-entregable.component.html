@@ -1,3 +1,18 @@
-<app-header [Profesor]="Curso.profesor" [Profesores]="Curso.profesores"></app-header>
+<app-header [Profesor]="Curso.profesor" [Profesores]="Curso.profesores" (evento)="eventoSeleccionado($event)"></app-header>
+
+<div class="row">
+    <div class="col-md-1">
+        <app-left-panel></app-left-panel>
+    </div>
+    <div class="col-md-11">
+        <div style="padding: 20px;">
+            <app-middle *ngIf="evento == 'ABMINICIO'"></app-middle>
+            <app-profesor-index [Profesores]="Curso.profesores" *ngIf="evento == 'ABMPROFESOR'"></app-profesor-index>
+            <app-index-alumno [Alumnos]="Curso.alumnos" *ngIf="evento == 'ABMALUMNO'"></app-index-alumno>
+        </div>
+    </div> 
+</div>
+
+
 
 <app-footer></app-footer>

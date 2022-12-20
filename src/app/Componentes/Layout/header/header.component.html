@@ -1,7 +1,7 @@
-<p>
+<p style="margin-bottom: 0px;">
     <mat-toolbar color="primary">
 
-        <button  *ngIf="!logueado" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [matMenuTriggerFor]="menu">
+        <button  *ngIf="logueado" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [matMenuTriggerFor]="menu">
             <mat-icon>menu</mat-icon>
         </button>
 
@@ -10,7 +10,6 @@
         <span class="example-spacer"></span>       
         <button *ngIf="!logueado" mat-flat-button (click)="Loguear()">Login</button>&nbsp;&nbsp;
         <button *ngIf="!logueado" mat-flat-button (click)="Registrar()">Registrarse</button>
-        <button *ngIf="logueado" mat-flat-button (click)="Desloguear()">Cerrar sessión</button>
     </mat-toolbar>
 </p>
 <div class="alert alert-danger" role="alert" *ngIf="errorMessage != ''" >
@@ -18,16 +17,16 @@
 </div>
 
 <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>dialpad</mat-icon>
-      <span>Listado de Profesores</span>
+    <button mat-menu-item (click)="abmProfesor()">
+      <mat-icon>home</mat-icon>
+      <span>Profesores</span>
     </button>
-    <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-        <span>Control de Alumnos</span>
-    </button>
-    <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-        <span>Control de Materias</span>
+    <button mat-menu-item (click)="abmAlumno()">
+        <mat-icon>home</mat-icon>
+        <span>Alumnos</span>
+    </button> 
+    <button mat-menu-item  (click)="Desloguear()">
+        <mat-icon>home</mat-icon>
+        <span>Cerrar sessión</span>
     </button> 
 </mat-menu>

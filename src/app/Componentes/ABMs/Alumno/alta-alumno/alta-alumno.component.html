@@ -1,0 +1,59 @@
+<form class="form" [formGroup]="formularioPrincipal" style="min-height: 400px;min-width: 400px;" (ngSubmit)="submit()">
+    <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Nombre" [(ngModel)]="Alumno.nombre" formControlName="nombre" >
+        </mat-form-field><br>
+        <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+        *ngIf="formularioPrincipal.get('nombre')?.errors?.['maxlength']">
+        Este campo debe tener como máximo 15 caracteres.</small>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido</mat-label>
+          <input matInput placeholder="Apellido" [(ngModel)]="Alumno.apellido" formControlName="apellido">
+        </mat-form-field><br>
+        <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+        *ngIf="formularioPrincipal.get('apellido')?.errors?.['maxlength']">
+        Este campo debe tener como máximo 15 caracteres.</small>
+    </p>
+    <p>
+
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" [(ngModel)]="Alumno.fechaNacimiento" formControlName="fechaNacimiento">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+
+    </p>  
+    <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" [(ngModel)]="Alumno.email" formControlName="email">
+        </mat-form-field><br>
+        <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+        *ngIf="formularioPrincipal.get('email')?.errors?.['maxlength']">
+        Este campo debe tener como máximo 30 caracteres.</small>
+        <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+        *ngIf="formularioPrincipal.get('email')?.errors?.['email']">
+        Debe especificar una casilla de correo válida.</small>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Teléfono</mat-label>
+          <input matInput placeholder="Password" type="text" [(ngModel)]="Alumno.telefono" formControlName="telefono">
+        </mat-form-field><br>
+        <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+        *ngIf="formularioPrincipal.get('telefono')?.errors?.['maxlength']">
+        Este campo debe tener como máximo 15 caracteres.</small>
+    </p>
+
+    
+    
+    <div mat-dialog-actions style="text-align: right;">
+        <button *ngIf="!formularioPrincipal.valid" mat-raised-button disabled>Grabar</button>
+        <button *ngIf="formularioPrincipal.valid" mat-raised-button color="primary" cdkFocusInitial type="submit">Grabar</button>
+    </div>
+    
+</form>

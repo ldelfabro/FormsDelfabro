@@ -4,6 +4,5 @@ export interface Alumno {
     apellido : string,
     telefono : string,
     fechaNacimiento : Date,
-    pass : string,
     email : string
 }

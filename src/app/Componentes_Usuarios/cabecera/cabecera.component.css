@@ -1,9 +1,0 @@
-.list-group-item.active {
-    background-color: forestgreen;
-    border-color: forestgreen;
-}
-.list-group-item {
-    border:none;
-    border-radius: 0;
-    background: lightgrey;
-}
