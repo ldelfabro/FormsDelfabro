@@ -20,7 +20,12 @@ export class IndexAlumnoComponent implements OnInit {
   nuevoAlumno(alumno: Alumno) : void {
     this.seccion = 'lista';
     if(alumno.id == 0){
-      alumno.id = this.Alumnos.length;
+      if(this.Alumnos.length > 0){
+        alumno.id = this.Alumnos[this.Alumnos.length -1].id + 1;
+      }
+      else{
+        alumno.id = 1;
+      }
       this.Alumnos.push(alumno);
     }
   }
