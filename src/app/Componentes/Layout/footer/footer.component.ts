@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CursoServiceService } from '../../../Services/curso-service.service';
+import { LocalidadService } from '../../../Services/localidad.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  public fechaObservable: Observable<Date>;
+
+  constructor(public localidadService : LocalidadService) { }
 
   ngOnInit(): void {
+
+    this.fechaObservable = this.localidadService.getFecha();
+
+
   }
 
 }

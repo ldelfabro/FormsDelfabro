@@ -4,5 +4,7 @@ export interface Alumno {
     apellido : string,
     telefono : string,
     fechaNacimiento : Date,
-    email : string
+    email : string,
+    provincia : string,
+    localidad : string
 }

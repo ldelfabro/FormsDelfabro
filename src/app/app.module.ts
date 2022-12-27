@@ -21,6 +21,8 @@ import { IndexAlumnoComponent } from './Componentes/ABMs/Alumno/index-alumno/ind
 import { AltaAlumnoComponent } from './Componentes/ABMs/Alumno/alta-alumno/alta-alumno.component';
 import { LeftPanelComponent } from './Componentes/Layout/left-panel/left-panel.component';
 import { TituloDirective } from './Directivas/titulo.directive';
+import { HttpClientModule } from '@angular/common/http';
+import { ArraySortPipe } from './Pipes/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -39,15 +41,17 @@ import { TituloDirective } from './Directivas/titulo.directive';
     IndexAlumnoComponent,
     AltaAlumnoComponent,
     LeftPanelComponent,
-    TituloDirective],
+    TituloDirective,
+    ArraySortPipe],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    BrowserAnimationsModule
-  ],
+    BrowserAnimationsModule,
+    HttpClientModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

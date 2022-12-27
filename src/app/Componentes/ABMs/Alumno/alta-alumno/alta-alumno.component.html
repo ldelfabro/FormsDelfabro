@@ -9,7 +9,7 @@
         Este campo debe tener como máximo 15 caracteres.</small>
     </p>
     <p>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Apellido</mat-label>
           <input matInput placeholder="Apellido" [(ngModel)]="Alumno.apellido" formControlName="apellido">
         </mat-form-field><br>
@@ -19,16 +19,15 @@
     </p>
     <p>
 
-        <mat-form-field>
+        <mat-form-field appearance="fill">
             <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" [(ngModel)]="Alumno.fechaNacimiento" formControlName="fechaNacimiento">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
 
-
     </p>  
     <p>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
           <input matInput placeholder="Email" [(ngModel)]="Alumno.email" formControlName="email">
         </mat-form-field><br>
@@ -40,7 +39,7 @@
         Debe especificar una casilla de correo válida.</small>
     </p>
     <p>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Teléfono</mat-label>
           <input matInput placeholder="Password" type="text" [(ngModel)]="Alumno.telefono" formControlName="telefono">
         </mat-form-field><br>
@@ -49,8 +48,35 @@
         Este campo debe tener como máximo 15 caracteres.</small>
     </p>
 
-    
-    
+    <div class="row" *ngIf="Alumno.id == 0">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill">
+            <mat-label>Seleccione Provincia</mat-label>
+            <mat-select formControlName="provincia">
+              <mat-option *ngFor="let prov of (provincias | async) | sort:'nombre'" [value]="prov.nombre">{{prov.nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6" *ngIf="!formularioPrincipal.get('provincia')?.errors?.['required']"> 
+          <mat-form-field appearance="fill">
+            <mat-label>Seleccione Localidad</mat-label>
+            <mat-select formControlName="localidad">
+              <mat-option *ngFor="let loc of localidades | sort:'nombre'" [value]="loc.nombre">{{loc.nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="Alumno.id > 0">
+      <b>Provincia: {{Alumno.provincia}}</b>
+      <br>
+      <b>Localidad: {{Alumno.localidad}}</b>
+  </div>
+
+    <br>
+
+  <br>
+
     <div mat-dialog-actions style="text-align: right;">
         <button *ngIf="!formularioPrincipal.valid" mat-raised-button disabled>Grabar</button>
         <button *ngIf="formularioPrincipal.valid" mat-raised-button color="primary" cdkFocusInitial type="submit">Grabar</button>
