@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './Componentes/Layout/header/header.component';
 import { MaterialModule } from './modules/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PrimerEntregableComponent } from './Componentes/primer-entregable/primer-entregable.component';
+import { PrimerEntregableComponent } from './Componentes/Principal/principal.component';
 import { ModalRegistrarComponent } from './Componentes/Layout/modal-registrar/modal-registrar.component';
 import { ModalLoguearComponent } from './Componentes/Layout/modal-loguear/modal-loguear.component';
 import { NombreCompletoProfesorPipe } from './Pipes/nombre-completo-profesor.pipe';

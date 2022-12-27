@@ -3,9 +3,9 @@ import { Curso } from 'src/app/Interfaces/ICurso';
 import { Profesor } from '../../Interfaces/IProfesor';
 
 @Component({
-  selector: 'app-primer-entregable',
-  templateUrl: './primer-entregable.component.html',
-  styleUrls: ['./primer-entregable.component.css']
+  selector: 'app-principal',
+  templateUrl: './principal.component.html',
+  styleUrls: ['./principal.component.css']
 })
 export class PrimerEntregableComponent implements OnInit {
 
