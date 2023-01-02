@@ -1,0 +1,29 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ListaAlumnoComponent } from './lista-alumno/lista-alumno.component';
+import { IndexAlumnoComponent } from './index-alumno/index-alumno.component';
+import { AltaAlumnoComponent } from './alta-alumno/alta-alumno.component';
+import { MaterialModule } from 'src/app/modules/material/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PipeModuleModule } from 'src/app/Pipes/pipe-module.module';
+
+@NgModule({
+  declarations: [
+    ListaAlumnoComponent,
+    IndexAlumnoComponent,
+    AltaAlumnoComponent
+  ],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PipeModuleModule
+  ],
+  exports : [
+    ListaAlumnoComponent,
+    IndexAlumnoComponent,
+    AltaAlumnoComponent
+  ]
+})
+export class AlumnoModuleModule { }
