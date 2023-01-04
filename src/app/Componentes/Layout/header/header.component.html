@@ -17,16 +17,17 @@
 </div>
 
 <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="abmProfesor()">
+    <button mat-menu-item routerLink="/Profesor">
       <mat-icon>home</mat-icon>
       <span>Profesores</span>
     </button>
-    <button mat-menu-item (click)="abmAlumno()">
+    <button mat-menu-item  routerLink="/Alumno">
         <mat-icon>home</mat-icon>
         <span>Alumnos</span>
     </button> 
-    <button mat-menu-item  (click)="Desloguear()">
+    <button mat-menu-item  (click)="Desloguear()" routerLink="/">
         <mat-icon>home</mat-icon>
         <span>Cerrar sessión</span>
     </button> 
 </mat-menu>
+

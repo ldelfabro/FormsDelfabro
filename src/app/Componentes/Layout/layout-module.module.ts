@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalRegistrarComponent } from './modal-registrar/modal-registrar.component';
 import { ModalLoguearComponent } from './modal-loguear/modal-loguear.component';
 import { PipeModuleModule } from 'src/app/Pipes/pipe-module.module';
+import { LayoutModuleRoutingModule } from './layout-module-routing.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PipeModuleModule } from 'src/app/Pipes/pipe-module.module';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    PipeModuleModule
+    PipeModuleModule,
+    LayoutModuleRoutingModule
   ],
   exports : [
     HeaderComponent,

@@ -6,9 +6,9 @@
     </div>
     <div class="col-md-11">
         <div style="padding: 20px;">
-            <app-middle *ngIf="evento == 'ABMINICIO'"></app-middle>
-            <app-profesor-index [Profesores]="Curso.profesores" *ngIf="evento == 'ABMPROFESOR'"></app-profesor-index>
-            <app-index-alumno [Alumnos]="Curso.alumnos" *ngIf="evento == 'ABMALUMNO'"></app-index-alumno>
+
+            <router-outlet></router-outlet>
+
         </div>
     </div> 
 </div>

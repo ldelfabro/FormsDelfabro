@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Alumno } from 'src/app/Interfaces/IAlumno';
+import { CursoServiceService } from '../../../../Services/curso-service.service';
 
 @Component({
   selector: 'app-index-alumno',
@@ -8,13 +9,14 @@ import { Alumno } from 'src/app/Interfaces/IAlumno';
 })
 export class IndexAlumnoComponent implements OnInit {
 
-  @Input() Alumnos : Alumno [];
+  Alumnos : Alumno [];
   public AlumnoSeleccionadoId : number;
   public AlumnoEditar : Alumno;
   public seccion : string = 'lista';
-  constructor() { }
+  constructor(private cursoService : CursoServiceService) { }
 
   ngOnInit(): void {
+    this.Alumnos = this.cursoService.obtenerDatos().alumnos;
   }
 
   nuevoAlumno(alumno: Alumno) : void {
