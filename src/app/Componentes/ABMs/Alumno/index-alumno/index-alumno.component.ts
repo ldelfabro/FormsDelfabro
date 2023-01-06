@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Alumno } from 'src/app/Interfaces/IAlumno';
 import { CursoServiceService } from '../../../../Services/curso-service.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-index-alumno',
@@ -9,14 +10,19 @@ import { CursoServiceService } from '../../../../Services/curso-service.service'
 })
 export class IndexAlumnoComponent implements OnInit {
 
-  Alumnos : Alumno [];
+ // Alumnos : Alumno[];
+  public Alumnos :  Alumno[];
+  private suscripcion : Subscription;
+
   public AlumnoSeleccionadoId : number;
   public AlumnoEditar : Alumno;
   public seccion : string = 'lista';
   constructor(private cursoService : CursoServiceService) { }
 
   ngOnInit(): void {
-    this.Alumnos = this.cursoService.obtenerDatos().alumnos;
+
+    this.cursoService.obtenerDatosAlumnos().subscribe(value => this.Alumnos = value);
+
   }
 
   nuevoAlumno(alumno: Alumno) : void {
@@ -48,8 +54,7 @@ export class IndexAlumnoComponent implements OnInit {
 
   eliminarAlumno(id: number): void {
 
-    this.seccion = 'lista';
-    this.Alumnos = this.Alumnos.filter(e => e.id !== id);
+    this.cursoService.eliminarAlumno(id);
 
     
   }

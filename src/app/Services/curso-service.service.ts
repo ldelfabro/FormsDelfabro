@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Curso } from '../Interfaces/ICurso';
+import { Alumno } from '../Interfaces/IAlumno';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CursoServiceService {
 
-  constructor() { }
+  private miCurso : Curso;
 
-  public obtenerDatos() : Curso {
-    return {
+  constructor() { 
+    this.miCurso =  {
       nombre : "",
       alumnos: [
         { provincia : "Buenos Aires", localidad : "Mar del Plata", nombre : "Leandro", apellido : "Delfabro", email : "asd5@asd.com", id : 1, telefono : '2232131321', fechaNacimiento : new Date()},
@@ -28,6 +30,24 @@ export class CursoServiceService {
       profesores: [{ nombre : "Leandro", apellido : "Delfabro", email : "asd@asd.com", pass : "manda1", id : 1}],
       id : 0
     }
+
   }
 
+  public eliminarAlumno(id : number){
+     let Alumnos : Alumno[] = [];
+     
+     this.miCurso.alumnos.forEach(function(elemento){
+      if(elemento.id != id){
+        Alumnos.push(elemento)
+      }
+     });
+     this.miCurso.alumnos = Alumnos;
+  }
+
+  public obtenerDatos() : Curso {
+    return  this.miCurso;
+  }
+  public obtenerDatosAlumnos() : Observable<Alumno[]> {
+    return  of (this.miCurso.alumnos);
+  }
 }

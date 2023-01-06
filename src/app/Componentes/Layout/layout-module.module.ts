@@ -10,31 +10,29 @@ import { ModalRegistrarComponent } from './modal-registrar/modal-registrar.compo
 import { ModalLoguearComponent } from './modal-loguear/modal-loguear.component';
 import { PipeModuleModule } from 'src/app/Pipes/pipe-module.module';
 import { LayoutModuleRoutingModule } from './layout-module-routing.module';
+import { RouterModule } from '@angular/router';
+import { PrimerEntregableComponent } from './Principal/principal.component';
 
 @NgModule({
   declarations: [
+    ModalRegistrarComponent,
+    ModalLoguearComponent,
+    PrimerEntregableComponent,
     HeaderComponent,
     FooterComponent,
     MiddleComponent,
-    LeftPanelComponent,
-    ModalRegistrarComponent,
-    ModalLoguearComponent
-  ],
+    LeftPanelComponent
+    ],
   imports: [
     CommonModule,
-    MaterialModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     PipeModuleModule,
     LayoutModuleRoutingModule
   ],
   exports : [
-    HeaderComponent,
-    FooterComponent,
-    MiddleComponent,
-    LeftPanelComponent,
-    ModalRegistrarComponent,
-    ModalLoguearComponent
-    ]
+    PrimerEntregableComponent
+  ]
 })
 export class LayoutModuleModule { }

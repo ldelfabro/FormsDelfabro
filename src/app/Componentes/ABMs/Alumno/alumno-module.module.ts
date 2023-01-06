@@ -19,11 +19,6 @@ import { PipeModuleModule } from 'src/app/Pipes/pipe-module.module';
     FormsModule,
     ReactiveFormsModule,
     PipeModuleModule
-  ],
-  exports : [
-    ListaAlumnoComponent,
-    IndexAlumnoComponent,
-    AltaAlumnoComponent
   ]
 })
 export class AlumnoModuleModule { }

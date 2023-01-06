@@ -5,6 +5,7 @@ import { ListaComponent } from './lista/lista.component';
 import { MaterialModule } from 'src/app/modules/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipeModuleModule } from 'src/app/Pipes/pipe-module.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -13,14 +14,11 @@ import { PipeModuleModule } from 'src/app/Pipes/pipe-module.module';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     PipeModuleModule
-  ],
-  exports : [
-    IndexComponent,
-    ListaComponent
   ]
 })
 export class ProfesorModuleModule { }

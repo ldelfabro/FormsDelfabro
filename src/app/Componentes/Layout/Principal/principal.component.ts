@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Curso } from 'src/app/Interfaces/ICurso';
-import { Profesor } from '../../Interfaces/IProfesor';
-import { CursoServiceService } from '../../Services/curso-service.service';
+import { CursoServiceService } from '../../../Services/curso-service.service';
 
 @Component({
   selector: 'app-principal',

@@ -14,7 +14,7 @@ export class IndexComponent implements OnInit {
   constructor(private cursoService : CursoServiceService) { }
 
   ngOnInit(): void {
-    this.Profesores = this.cursoService.obtenerDatos().profesores;
+    //this.Profesores = this.cursoService.obtenerDatos().profesores;
   }
 
 }
