@@ -1,4 +1,12 @@
-<form class="form" [formGroup]="formularioPrincipal" style="min-height: 400px;min-width: 400px;" (ngSubmit)="submit()">
+<h2 appTitulo>Nuevo</h2>
+<hr>
+<div class="row" style="margin-bottom: 20px;">
+    <div class="form-group col-md 12">
+        <button mat-raised-button color="primary" routerLink="/Alumno">Volver</button>
+    </div>
+</div>
+<form class="form" [formGroup]="formularioPrincipal" style="min-height: 400px;min-width: 400px;" (ngSubmit)="submit()" class="col-md-4">
+    <div class="row" class="row" *ngIf="FormType == 'Create' || FormType == 'Update'">
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Nombre</mat-label>
@@ -47,8 +55,8 @@
         *ngIf="formularioPrincipal.get('telefono')?.errors?.['maxlength']">
         Este campo debe tener como máximo 15 caracteres.</small>
     </p>
-
-    <div class="row" *ngIf="Alumno.id == 0">
+   </div>
+    <div class="row" *ngIf="FormType == 'Create'">
         <div class="col-md-6">
           <mat-form-field appearance="fill">
             <mat-label>Seleccione Provincia</mat-label>
@@ -67,18 +75,27 @@
         </div>
     </div>
 
-    <div class="row" *ngIf="Alumno.id > 0">
-      <b>Provincia: {{Alumno.provincia}}</b>
+  <div class="row" *ngIf="FormType == 'Delete'">
+      <b>Nombre:  {{Alumno | nombreCompletoAlumno}}</b>
       <br>
-      <b>Localidad: {{Alumno.localidad}}</b>
+      <b>Fecha de nacimiento: {{Alumno.fechaNacimiento | date: 'dd/MM/yyyy'}}</b>
+      <br>
+      <b>Email: {{Alumno.email}</b>
+      <br>
+      <b>Teléfono: {{Alumno.telefono}</b>
+      <br>
+  </div>
+  <div class="row" *ngIf="FormType =='Update' || FormType == 'Delete'">
+    <b>Provincia: {{Alumno.provincia}}</b>
+    <br>
+    <b>Localidad: {{Alumno.localidad}}</b>
   </div>
 
-    <br>
-
+  <br>
   <br>
 
     <div mat-dialog-actions style="text-align: right;">
-        <button *ngIf="!formularioPrincipal.valid" mat-raised-button disabled>Grabar</button>
+        <button *ngIf="!formularioPrincipal.valid" mat-raised-button disabled>{{FormType == 'Create' ? 'Nuevo' : FormType == 'Delete' ? 'Eliminar' : 'Actualizar'}}</button>
         <button *ngIf="formularioPrincipal.valid" mat-raised-button color="primary" cdkFocusInitial type="submit">Grabar</button>
     </div>
     

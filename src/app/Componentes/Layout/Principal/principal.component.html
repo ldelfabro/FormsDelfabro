@@ -1,4 +1,4 @@
-<app-header [Profesor]="Curso.profesor" [Profesores]="Curso.profesores" (evento)="eventoSeleccionado($event)"></app-header>
+<app-header [Profesor]="Curso.profesor" [Profesores]="Curso.profesores"></app-header>
 
 <div class="row">
     <div class="col-md-1">
@@ -6,9 +6,7 @@
     </div>
     <div class="col-md-11">
         <div style="padding: 20px;">
-
             <router-outlet></router-outlet>
-
         </div>
     </div> 
 </div>

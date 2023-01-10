@@ -25,15 +25,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  abmProfesor() : void {
-    this.evento.emit("ABMPROFESOR");
-  }
-  abmAlumno() : void {
-    this.evento.emit("ABMALUMNO");
-  }
+
   Desloguear() : void{
     this.logueado = false;
-    this.evento.emit("ABMINICIO");
   }
 
   Loguear() : void {

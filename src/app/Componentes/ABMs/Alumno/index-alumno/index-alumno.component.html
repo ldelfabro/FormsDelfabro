@@ -2,22 +2,11 @@
 <hr>
 <div class="row" style="margin-bottom: 20px;">
     <div class="form-group col-md 12">
-        <button mat-raised-button color="primary" (click)="seccion = 'nuevo'" *ngIf="seccion == 'lista'">Registrar nuevo</button>
-        <button mat-raised-button color="primary" (click)="seccion = 'lista'" *ngIf="seccion != 'lista'">Volver</button>
+        <button mat-raised-button color="primary" routerLink="/Alumno/Create">Registrar nuevo</button>
     </div>
 </div>
-<div class="row" *ngIf="seccion == 'lista'">
+<div class="row">
     <div class="col-md-6">
-        <app-lista-alumno  [Alumnos]="Alumnos" (AlumnoSeleccionadoId)="editarAlumno($event)" (AlumnoSeleccionadoRemoverId)="eliminarAlumno($event)"></app-lista-alumno>
-    </div>
-</div>
-<div class="row"  *ngIf="seccion == 'nuevo'">
-    <div class="col-md-4">
-        <app-alta-alumno (NuevoUsuarioRetorno)="nuevoAlumno($event)"></app-alta-alumno>
-    </div>
-</div>
-<div class="row"  *ngIf="seccion == 'editar'">
-    <div class="col-md-4">
-        <app-alta-alumno [Alumno]="AlumnoEditar" (NuevoUsuarioRetorno)="nuevoAlumno($event)"></app-alta-alumno>
+        <router-outlet></router-outlet>
     </div>
 </div>

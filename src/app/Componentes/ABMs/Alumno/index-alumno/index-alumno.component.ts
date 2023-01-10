@@ -10,33 +10,16 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class IndexAlumnoComponent implements OnInit {
 
- // Alumnos : Alumno[];
   public Alumnos :  Alumno[];
-  private suscripcion : Subscription;
 
   public AlumnoSeleccionadoId : number;
   public AlumnoEditar : Alumno;
   public seccion : string = 'lista';
   constructor(private cursoService : CursoServiceService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
-    this.cursoService.obtenerDatosAlumnos().subscribe(value => this.Alumnos = value);
-
-  }
-
-  nuevoAlumno(alumno: Alumno) : void {
-    this.seccion = 'lista';
-    if(alumno.id == 0){
-      if(this.Alumnos.length > 0){
-        alumno.id = this.Alumnos[this.Alumnos.length -1].id + 1;
-      }
-      else{
-        alumno.id = 1;
-      }
-      this.Alumnos.push(alumno);
-    }
-  }
+  
 
   editarAlumno(id: number) : void {
     

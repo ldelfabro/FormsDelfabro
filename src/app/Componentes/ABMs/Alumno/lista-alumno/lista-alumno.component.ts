@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Alumno } from 'src/app/Interfaces/IAlumno';
+import { CursoServiceService } from '../../../../Services/curso-service.service';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-alumno',
@@ -8,21 +11,30 @@ import { Alumno } from 'src/app/Interfaces/IAlumno';
 })
 export class ListaAlumnoComponent implements OnInit {
 
-  @Input() Alumnos : Alumno [];
+  Alumnos : Alumno [];
   @Output() AlumnoSeleccionadoId = new EventEmitter<number>();
   @Output() AlumnoSeleccionadoRemoverId = new EventEmitter<number>();
+  Alumnos$ : Observable<Alumno[]>;
 
   displayedColumns: string[] = ['id','editar','remover', 'nombre', 'telefono', 'fechaNacimiento', 'email', 'provincia', 'localidad'];
 
-  constructor() { }
+  constructor(public cursoService: CursoServiceService,  private router : Router) { 
+    this.Alumnos = [];
+  }
 
   ngOnInit(): void {
-  }
 
-  seleccionar(id : number) : void {
-    this.AlumnoSeleccionadoId.emit(id);
+    this.Alumnos$ = this.cursoService.getAlumnos();
+
+    this.Alumnos$.subscribe((alumnos) => {
+      this.Alumnos = alumnos;
+    })
+
+  }
+  actualizar(id : number) : void {
+    this.router.navigate(['Alumno/Update/' + id])
   }
   remover(id : number) : void {
-    this.AlumnoSeleccionadoRemoverId.emit(id);
+    this.router.navigate(['Alumno/Delete/' + id])
   }
 }

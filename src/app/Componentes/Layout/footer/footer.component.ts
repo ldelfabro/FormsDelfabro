@@ -18,11 +18,7 @@ export class FooterComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.fechaObservable = this.localidadService.getFecha();
-    
-    this.suscripcion = this.localidadService.getFecha().subscribe(value => 
-      {
-        console.log("me estoy ejecutando");
-      })
+    this.suscripcion = this.localidadService.getFecha().subscribe()
 
   }
 

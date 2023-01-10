@@ -5,6 +5,9 @@ import { Alumno } from 'src/app/Interfaces/IAlumno';
 import { Localidad } from 'src/app/Interfaces/ILocalidad';
 import { Provincia } from 'src/app/Interfaces/IProvincia';
 import { LocalidadService } from '../../../../Services/localidad.service';
+import { CursoServiceService } from '../../../../Services/curso-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Parametros } from '../../../../Interfaces/ILocalidad';
 
 @Component({
   selector: 'app-alta-alumno',
@@ -13,9 +16,11 @@ import { LocalidadService } from '../../../../Services/localidad.service';
 })
 export class AltaAlumnoComponent implements OnInit {
 
-  @Input() Alumno : Alumno;
-  @Output() NuevoUsuarioRetorno = new EventEmitter<Alumno>();
+  Alumno : Alumno;
  
+  public FormType : string;
+  public CurrentId : Number;
+  public Provincia : string;
   public formularioPrincipal: FormGroup;
 
   public controlProvincia = new FormControl(['', [Validators.required]])
@@ -23,26 +28,40 @@ export class AltaAlumnoComponent implements OnInit {
   public localidades : Localidad[];
   public provincias: Observable<Provincia[]>;
 
-  constructor(private fb : FormBuilder, public localidadService : LocalidadService) { 
-  }
+  constructor(private activateRoute : ActivatedRoute, private router : Router, private fb : FormBuilder, public localidadService : LocalidadService, public cursoService : CursoServiceService) {}
 
   ngOnInit(): void {
 
-    this.provincias = this.localidadService.buscarProvincia();
-
-    if(!this.Alumno){
-      this.Alumno = {
-        nombre : '',
-        apellido : '',
-        telefono : '',
-        id : 0,
-        email : '',
-        fechaNacimiento : new Date(),
-        provincia : '',
-        localidad : ''
+    this.activateRoute.url.subscribe(value => {
+      
+      this.FormType = value[0].path.toString();
+      if(this.FormType == "Update" || this.FormType == "Delete") {
+        this.activateRoute.params.subscribe(_param => {
+          this.cursoService.getAlumnoById(_param["parametro"]).subscribe(value => {
+            if(value){
+                this.Alumno = value
+                this.Provincia = this.Alumno.provincia;
+            }
+          
+          });
+        });
       }
-    }
-    
+      else {
+        this.Alumno = {
+          nombre : '',
+          apellido : '',
+          telefono : '',
+          id : 0,
+          email : '',
+          fechaNacimiento : new Date(),
+          provincia : '',
+          localidad : ''
+        }
+      }
+    })
+
+    this.provincias = this.localidadService.buscarProvincia();
+   
     this.formularioPrincipal = this.fb.group({
       nombre : ['', [Validators.required, Validators.maxLength(15)]],
       apellido : ['', [Validators.required, Validators.maxLength(15)]],
@@ -68,7 +87,8 @@ export class AltaAlumnoComponent implements OnInit {
         this.Alumno.provincia = this.formularioPrincipal.get('provincia')?.value;
         this.Alumno.localidad = this.formularioPrincipal.get('localidad')?.value;
       }
-      this.NuevoUsuarioRetorno.emit(this.Alumno);
+      this.cursoService.addAlumno(this.Alumno);
+      this.router.navigate(['Alumno'])
     }
 
   }

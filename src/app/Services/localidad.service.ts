@@ -1,16 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { interval, map, Observable } from 'rxjs';
-import { Localidad, Localidades } from '../Interfaces/ILocalidad';
-import { Provincia, Provincias } from '../Interfaces/IProvincia';
+import { Localidad } from '../Interfaces/ILocalidad';
+import { Provincia } from '../Interfaces/IProvincia';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalidadService {
 
-  constructor(private http: HttpClient) { 
-  }
+  constructor(private http: HttpClient) {}
 
   buscarProvincia() : Observable<Provincia[]>{
     return this.http.get('https://apis.datos.gob.ar/georef/api/provincias', {
