@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   @Output() evento = new EventEmitter<string>();
 
-  public logueado = false;
+  public logueado = true;
   public flagLogin = false;
   public flagLoginError = false;
   public errorMessage = '';
@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
 
 
   Desloguear() : void{
-    this.logueado = false;
+   // this.logueado = false;
   }
 
   Loguear() : void {

@@ -6,6 +6,8 @@ import { Profesor } from "./IProfesor";
 export interface Curso {
     id : number,
     nombre : string,
+    comision : string,
+    descripcion : string,
     alumnos : Alumno [],
     materias : Materia[],
     profesores : Profesor [],

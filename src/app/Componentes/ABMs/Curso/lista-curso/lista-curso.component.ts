@@ -14,7 +14,7 @@ export class ListaCursoComponent implements OnInit {
   Cursos : Curso [];
   Curso$ : Observable<Curso[]>;
  
-  displayedColumns: string[] = ['id','editar','remover', 'nombre', 'cantidadAlumnos', 'cantidadProfesores', 'cantidadMaterias'];
+  displayedColumns: string[] = ['id','editar','remover', 'nombre',  'descripcion', 'comision', 'cantidadAlumnos', 'cantidadProfesores', 'cantidadMaterias'];
 
   constructor(public service: CursoService,  private router : Router) { }
 

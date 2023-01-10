@@ -25,6 +25,10 @@ export class CursoService {
   return this.data.asObservable().pipe(map((value : Curso[]) => value.filter(c => c.id == id)[0]));
  }
 
+ public getAlumnosById(id: number) : Observable<Alumno[]> {
+  return this.data.asObservable().pipe(map((value : Curso[]) => value.filter(c => c.id == id)[0].alumnos));
+ }
+
  public add(alumno : Curso){
   let lastId = this._entity.length > 0 ? this._entity[this._entity.length -1].id + 1 : 1;
   alumno.id = lastId;

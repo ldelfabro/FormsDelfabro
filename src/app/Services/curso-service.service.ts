@@ -8,7 +8,7 @@ import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
 })
 export class CursoServiceService {
 
-  private miCurso : Curso = {
+  /*private miCurso : Curso = {
     nombre : "Mandarina",
     alumnos: [
       { provincia : "Buenos Aires", localidad : "Mar del Plata", nombre : "Leandro", apellido : "Delfabro", email : "asd5@asd.com", id : 1, telefono : '2232131321', fechaNacimiento : new Date()},
@@ -85,6 +85,6 @@ export class CursoServiceService {
     this.curso.next(this.miCurso);
   }
 
-
+*/
 
 }

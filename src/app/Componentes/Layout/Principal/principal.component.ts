@@ -14,14 +14,12 @@ export class PrimerEntregableComponent implements OnInit {
   public Curso : Curso;
   public evento : string = 'ABMINICIO';
   constructor(private cursoService : CursoServiceService) { 
-    this.Curso = { id : 0, alumnos : [], profesor : { id: 0, apellido : "", nombre : "", email : "",pass : ""}, profesores : [], materias : [], nombre : "", notas: []}
+    this.Curso = { descripcion : '', comision: '', id : 0, alumnos : [], profesor : { id: 0, apellido : "", nombre : "", email : "",pass : ""}, profesores : [], materias : [], nombre : "", notas: []}
   }
 
   ngOnInit(): void {
 
 
-    this.Curse = this.cursoService.getCurso();
-    this.Curse.subscribe(curso => this.Curso = curso);
        
   }
 

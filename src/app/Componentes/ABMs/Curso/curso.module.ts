@@ -8,6 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipeModuleModule } from 'src/app/Pipes/pipe-module.module';
 import { CursoRoutingModule } from './curso-routing.module';
 import { ModalAlumnoIngresarComponent } from './modal-alumno-ingresar/modal-alumno-ingresar.component';
+import { InscripcionComponent } from './inscripcion/inscripcion.component';
+import { InscripcionMateriaComponent } from './inscripcion-materia/inscripcion-materia.component';
+import { InscripcionProfesoresComponent } from './inscripcion-profesores/inscripcion-profesores.component';
 
 
 
@@ -16,7 +19,10 @@ import { ModalAlumnoIngresarComponent } from './modal-alumno-ingresar/modal-alum
     IndexCursoComponent,
     ListaCursoComponent,
     AbmCursoComponent,
-    ModalAlumnoIngresarComponent
+    ModalAlumnoIngresarComponent,
+    InscripcionComponent,
+    InscripcionMateriaComponent,
+    InscripcionProfesoresComponent
   ],
   imports: [
     CommonModule,

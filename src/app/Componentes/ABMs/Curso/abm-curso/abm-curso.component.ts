@@ -17,16 +17,16 @@ export class AbmCursoComponent implements OnInit {
 
   Curso : Curso;
   Curso$ : Observable<Curso>;
-
+  public parametroId : number;
   public FormType : string;
   public formularioPrincipal: FormGroup;
-  
   displayedColumnsAlumnos: string[] = ['id','remover', 'nombre', 'telefono', 'fechaNacimiento', 'email', 'provincia', 'localidad'];
 
   constructor(public dialog: MatDialog, private activateRoute : ActivatedRoute, private router : Router, private fb : FormBuilder, public cursoService : CursoService) { }
 
   ngOnInit(): void {
-    this.Curso = { nombre : '', alumnos: [], profesores : [], notas : [], materias : [], id : 0, profesor : { apellido : '', email : '', nombre : '', pass : '', id : 0 } }
+
+    this.Curso = {descripcion: '', comision : '', nombre : '', alumnos: [], profesores : [], notas : [], materias : [], id : 0, profesor : { apellido : '', email : '', nombre : '', pass : '', id : 0 } }
 
 
     this.activateRoute.url.subscribe(value => {
@@ -34,7 +34,7 @@ export class AbmCursoComponent implements OnInit {
       this.FormType = value[0].path.toString();
       if(this.FormType == "Update" || this.FormType == "Delete") {
         this.activateRoute.params.subscribe(_param => {
-
+          this.parametroId = _param["parametro"];
           this.Curso$ = this.cursoService.getById(_param["parametro"]);
 
           this.Curso$.subscribe(value => {
@@ -47,7 +47,9 @@ export class AbmCursoComponent implements OnInit {
 
       if(this.FormType == "Update" || this.FormType == "Create" ){
         this.formularioPrincipal = this.fb.group({
-          nombre : ['', [Validators.required, Validators.maxLength(15)]]
+          nombre : ['', [Validators.required, Validators.maxLength(15)]],
+          descripcion : ['', [Validators.required, Validators.maxLength(30)]],
+          comision : ['', [Validators.required, Validators.maxLength(15)]]
         });
       }
       else
@@ -74,27 +76,6 @@ export class AbmCursoComponent implements OnInit {
         this.router.navigate(['Curso/Index'])
       }
     }
-  }
-
-  IngresarAlumno() : void {
-
-    const dialogRef = this.dialog.open(ModalAlumnoIngresarComponent, {data :this.Curso.id});
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.Curso$.subscribe(value => {
-        if(value)
-            this.Curso = value;        
-      });
-    });
-
-  }
-
-  removerAlumno(id : number) : void {
-    this.cursoService.removeAlumno(this.Curso.id, id);
-  }
-
-  pendienteImplementacion() : void {
-    alert("Pendiente de implementación")
   }
 
 }
