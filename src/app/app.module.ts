@@ -9,6 +9,7 @@ import { LayoutModuleModule } from './Componentes/Layout/layout-module.module';
 import { AlumnoModuleModule } from './Componentes/ABMs/Alumno/alumno-module.module';
 import { ProfesorModuleModule } from './Componentes/ABMs/Profesor/profesor-module.module';
 import { MaterialModule } from './modules/material/material.module';
+import { CursoModule } from './Componentes/ABMs/Curso/curso.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MaterialModule } from './modules/material/material.module';
     MaterialModule,
     LayoutModuleModule,
     AlumnoModuleModule,
-    ProfesorModuleModule   
+    ProfesorModuleModule,
+    CursoModule   
     ],
   providers: [],
   bootstrap: [AppComponent]

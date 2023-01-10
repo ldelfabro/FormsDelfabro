@@ -1,13 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { debounceTime, Observable, Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { debounceTime, Observable } from 'rxjs';
 import { Alumno } from 'src/app/Interfaces/IAlumno';
 import { Localidad } from 'src/app/Interfaces/ILocalidad';
 import { Provincia } from 'src/app/Interfaces/IProvincia';
 import { LocalidadService } from '../../../../Services/localidad.service';
-import { CursoServiceService } from '../../../../Services/curso-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Parametros } from '../../../../Interfaces/ILocalidad';
 import { AlumnoService } from 'src/app/Services/alumno.service';
 
 @Component({
@@ -101,9 +99,6 @@ export class AltaAlumnoComponent implements OnInit {
         this.router.navigate(['Alumno/Index'])
 
       }
-
-
-
     }
 
   }

@@ -1,5 +1,4 @@
 <br>
-<h4 appTitulo>{{FormType == 'Create' ? 'Nuevo' : FormType == 'Delete' ? 'Eliminar' : 'Actualizar'}} alumno</h4>
 <form class="form" [formGroup]="formularioPrincipal" style="min-height: 400px;min-width: 400px;" (ngSubmit)="submit()" class="col-md-4">
     <div class="row" class="row" *ngIf="FormType == 'Create' || FormType == 'Update'">
     <p>

@@ -1,1 +1,112 @@
-<p>abm-curso works!</p>
+<br>
+<form class="form" [formGroup]="formularioPrincipal" style="min-height: 600px;min-width: 800px;" (ngSubmit)="submit()" class="col-md-4">
+    <div class="row" class="row" *ngIf="FormType == 'Create'">
+    <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre del curso</mat-label>
+          <input matInput placeholder="Nombre" [(ngModel)]="Curso.nombre" formControlName="nombre" >
+        </mat-form-field><br>
+        <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+        *ngIf="formularioPrincipal.get('nombre')?.errors?.['maxlength']">
+        Este campo debe tener como máximo 15 caracteres.</small>
+    </p>
+   </div>
+   
+  <div class="row" *ngIf="FormType == 'Delete' || FormType == 'Update'" style="color:steelblue">
+      <h3><b>Nombre del curso:  {{Curso.nombre}}</b></h3>
+  </div>
+
+  <div *ngIf="FormType == 'Delete' || FormType == 'Update'"> 
+    <div class="row">
+        <div class="col-md-6"><h3><b>Alumnos</b></h3></div>
+        <div class="col-md-6" style="text-align: right;"><button mat-raised-button color="accent" (click)="IngresarAlumno()" *ngIf="FormType == 'Update'">Ingresar nuevo</button></div>
+    </div>
+   
+    <hr>
+    <div class="form-group col-md 10">
+        <i *ngIf="Curso.alumnos.length == 0">No se encontraron elementos registrados</i>
+        <table *ngIf="Curso.alumnos.length > 0" mat-table [dataSource]="Curso.alumnos" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>                  
+
+            <ng-container matColumnDef="remover">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element" style="color:red;" >
+                  <mat-icon  *ngIf="FormType == 'Update'" style="cursor: pointer;" title="Remover" (click)="removerAlumno(element.id)">delete</mat-icon>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef> Nombre completo </th>
+              <td mat-cell *matCellDef="let element"> {{element | nombreCompletoAlumno}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef> Email </th>
+              <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="telefono">
+                <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+                <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="fechaNacimiento">
+                <th mat-header-cell *matHeaderCellDef> Fecha nacimiento </th>
+                <td mat-cell *matCellDef="let element"> {{element.fechaNacimiento | date: 'dd/MM/yyyy'}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="provincia">
+                <th mat-header-cell *matHeaderCellDef> Provincia </th>
+                <td mat-cell *matCellDef="let element"> {{element.provincia}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="localidad">
+                <th mat-header-cell *matHeaderCellDef> Localidad </th>
+                <td mat-cell *matCellDef="let element"> {{element.localidad}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsAlumnos"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsAlumnos;"></tr></table>
+    </div> 
+
+
+
+    <div class="row" style="padding-top:40px">
+      <div class="col-md-6"><h3><b>Profesores</b></h3></div>
+      <div class="col-md-6" style="text-align: right;"><button mat-raised-button color="accent" (click)="pendienteImplementacion()" *ngIf="FormType == 'Update'">Ingresar nuevo</button>
+     </div>
+
+    <hr>
+    <div class="form-group col-md 10">
+      <i *ngIf="Curso.profesores.length == 0">No se encontraron elementos registrados</i>
+    </div>
+   </div>
+    
+    <div class="row" style="padding-top:40px">
+      <div class="col-md-6"><h3><b>Materias</b></h3></div>
+      <div class="col-md-6" style="text-align: right;"><button mat-raised-button color="accent" (click)="pendienteImplementacion()" *ngIf="FormType == 'Update'">Ingresar nuevo</button> </div>
+    <hr>
+    <div class="form-group col-md 10">
+        <i *ngIf="Curso.profesores.length == 0">No se encontraron elementos registrados</i>
+    </div>
+  </div>
+
+
+
+
+   
+</div>
+  <br>
+  <br>
+
+    <div mat-dialog-actions style="text-align: right;">
+        <button *ngIf="!formularioPrincipal.valid && FormType != 'Update'" mat-raised-button disabled>{{FormType == 'Create' ? 'Nuevo' : FormType == 'Delete' ? 'Eliminar' : 'Actualizar'}}</button>
+        <button *ngIf="formularioPrincipal.valid && FormType != 'Update'" mat-raised-button color="primary" cdkFocusInitial type="submit">{{FormType == 'Create' ? 'Nuevo' : FormType == 'Delete' ? 'Eliminar' : 'Actualizar'}}</button>
+        <button mat-raised-button color="primary" routerLink="/Curso/Index" style="margin-left: 10px;">Volver</button>
+    </div>
+    
+</form>

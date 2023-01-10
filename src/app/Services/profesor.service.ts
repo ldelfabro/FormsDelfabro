@@ -17,7 +17,7 @@ export class ProfesorService {
     this.data.next(this._entity);
    }
 
-   public getAll() : Observable<Profesor[]> {
+ public getAll() : Observable<Profesor[]> {
     return this.data.asObservable();
  }
 

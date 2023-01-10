@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Alumno } from 'src/app/Interfaces/IAlumno';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';

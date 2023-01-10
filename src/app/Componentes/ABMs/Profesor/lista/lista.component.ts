@@ -26,9 +26,6 @@ export class ListaProfesorComponent implements OnInit {
     })
   }
 
-  pendiente() : void {
-    alert('Pendiente de implementación')
-  }
   actualizar(id : number) : void {
     this.router.navigate(['Profesor/Update/' + id])
   }
