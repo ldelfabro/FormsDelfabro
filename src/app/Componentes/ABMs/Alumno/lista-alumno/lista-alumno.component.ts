@@ -12,8 +12,6 @@ import { AlumnoService } from 'src/app/Services/alumno.service';
 export class ListaAlumnoComponent implements OnInit {
 
   Alumnos : Alumno [];
-  @Output() AlumnoSeleccionadoId = new EventEmitter<number>();
-  @Output() AlumnoSeleccionadoRemoverId = new EventEmitter<number>();
   Alumnos$ : Observable<Alumno[]>;
 
   displayedColumns: string[] = ['id','editar','remover', 'nombre', 'telefono', 'fechaNacimiento', 'email', 'provincia', 'localidad'];

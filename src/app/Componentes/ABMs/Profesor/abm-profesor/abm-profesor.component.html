@@ -1,0 +1,55 @@
+<br>
+<h4 appTitulo>{{FormType == 'Create' ? 'Nuevo' : FormType == 'Delete' ? 'Eliminar' : 'Actualizar'}} Profesor</h4>
+<form class="form" [formGroup]="formularioPrincipal" style="min-height: 400px;min-width: 400px;" (ngSubmit)="submit()" class="col-md-4">
+    <div class="row" class="row" *ngIf="FormType == 'Create' || FormType == 'Update'">
+    <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Nombre" [(ngModel)]="Profesor.nombre" formControlName="nombre" >
+        </mat-form-field><br>
+        <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+        *ngIf="formularioPrincipal.get('nombre')?.errors?.['maxlength']">
+        Este campo debe tener como máximo 15 caracteres.</small>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Apellido</mat-label>
+          <input matInput placeholder="Apellido" [(ngModel)]="Profesor.apellido" formControlName="apellido">
+        </mat-form-field><br>
+        <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+        *ngIf="formularioPrincipal.get('apellido')?.errors?.['maxlength']">
+        Este campo debe tener como máximo 15 caracteres.</small>
+    </p>
+
+    <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" [(ngModel)]="Profesor.email" formControlName="email">
+        </mat-form-field><br>
+        <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+        *ngIf="formularioPrincipal.get('email')?.errors?.['maxlength']">
+        Este campo debe tener como máximo 15 caracteres.</small>
+        <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+        *ngIf="formularioPrincipal.get('email')?.errors?.['email']">
+        Debe especificar una casilla de correo válida.</small>
+    </p>
+  
+   </div>
+   
+  <div class="row" *ngIf="FormType == 'Delete'">
+      <b>Nombre:  {{Profesor | nombreCompletoProfesor}}</b>
+      <br>
+      <b>Email: {{Profesor.email}}</b>
+  </div>
+
+
+  <br>
+  <br>
+
+    <div mat-dialog-actions style="text-align: right;">
+        <button *ngIf="!formularioPrincipal.valid" mat-raised-button disabled>{{FormType == 'Create' ? 'Nuevo' : FormType == 'Delete' ? 'Eliminar' : 'Actualizar'}}</button>
+        <button *ngIf="formularioPrincipal.valid" mat-raised-button color="primary" cdkFocusInitial type="submit">{{FormType == 'Create' ? 'Nuevo' : FormType == 'Delete' ? 'Eliminar' : 'Actualizar'}}</button>
+        <button mat-raised-button color="primary" routerLink="/Profesor/Index" style="margin-left: 10px;">Volver</button>
+    </div>
+    
+</form>

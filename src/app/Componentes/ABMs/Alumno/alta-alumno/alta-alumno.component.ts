@@ -20,13 +20,12 @@ export class AltaAlumnoComponent implements OnInit {
   Alumno : Alumno;
  
   public FormType : string;
-  public Provincia : string;
 
   public formularioPrincipal: FormGroup;
   public localidades : Localidad[];
   public provincias: Observable<Provincia[]>;
 
-  constructor(private activateRoute : ActivatedRoute, private router : Router, private fb : FormBuilder, public localidadService : LocalidadService, public alumnoService: AlumnoService) {}
+  constructor(private activateRoute : ActivatedRoute, private router : Router, private fb : FormBuilder, public localidadService : LocalidadService, public alumnoService : AlumnoService) {}
 
   ngOnInit(): void {
 
@@ -37,8 +36,7 @@ export class AltaAlumnoComponent implements OnInit {
         this.activateRoute.params.subscribe(_param => {
           this.alumnoService.getById(_param["parametro"]).subscribe(value => {
             if(value){
-                this.Alumno = value
-                this.Provincia = this.Alumno.provincia;
+                this.Alumno = value;
             }
           
           });
@@ -68,8 +66,6 @@ export class AltaAlumnoComponent implements OnInit {
     
         this.formularioPrincipal.get('provincia')?.valueChanges.pipe(debounceTime(250)).subscribe((value) => 
           this.localidadService.buscarLocalidad(value).subscribe((value) => this.localidades = value))
-    
-
       }
     })
 

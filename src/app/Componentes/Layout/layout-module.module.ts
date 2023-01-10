@@ -22,7 +22,7 @@ import { PrimerEntregableComponent } from './Principal/principal.component';
     FooterComponent,
     MiddleComponent,
     LeftPanelComponent
-    ],
+  ],
   imports: [
     CommonModule,
     RouterModule,

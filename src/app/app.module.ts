@@ -14,7 +14,7 @@ import { MaterialModule } from './modules/material/material.module';
   declarations: [
     AppComponent,
     TituloDirective
-  ],
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
