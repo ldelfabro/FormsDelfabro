@@ -66,8 +66,25 @@ export class CursoServiceService {
   }
 
   public addAlumno(alumno : Alumno){
+    let lastId = this.miCurso.alumnos.length > 0 ? this.miCurso.alumnos[this.miCurso.alumnos.length -1].id + 1 : 1;
+    alumno.id = lastId;
     this.miCurso.alumnos.push(alumno);
     this.curso.next(this.miCurso);
   }
+  public updateAlumno(alumno : Alumno) {
+    var alumno = this.miCurso.alumnos.filter(c => c.id == alumno.id)[0];
+    this.miCurso.alumnos.forEach(function(elemento){
+      if(elemento.id == alumno.id){
+        elemento = alumno;
+      }
+    })
+    this.curso.next(this.miCurso);
+  }
+  public removeAlumno(id: number) {
+    this.miCurso.alumnos = this.miCurso.alumnos.filter(c => c.id != id);
+    this.curso.next(this.miCurso);
+  }
+
+
 
 }

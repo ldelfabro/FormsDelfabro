@@ -21,10 +21,8 @@ export class AltaAlumnoComponent implements OnInit {
   public FormType : string;
   public CurrentId : Number;
   public Provincia : string;
+
   public formularioPrincipal: FormGroup;
-
-  public controlProvincia = new FormControl(['', [Validators.required]])
-
   public localidades : Localidad[];
   public provincias: Observable<Provincia[]>;
 
@@ -45,50 +43,71 @@ export class AltaAlumnoComponent implements OnInit {
           
           });
         });
+
+        if(this.FormType == "Update"){
+          this.formularioPrincipal = this.fb.group({
+            nombre : ['', [Validators.required, Validators.maxLength(15)]], apellido : ['', [Validators.required, Validators.maxLength(15)]],
+            telefono : ['', [Validators.maxLength(15)]], fechaNacimiento : ['', [Validators.required]],
+            email : ['',[Validators.required, Validators.email,Validators.maxLength(15)]]
+          });
+        }
+        else
+          this.formularioPrincipal = this.fb.group({ });
+
       }
       else {
-        this.Alumno = {
-          nombre : '',
-          apellido : '',
-          telefono : '',
-          id : 0,
-          email : '',
-          fechaNacimiento : new Date(),
-          provincia : '',
-          localidad : ''
-        }
+        this.Alumno = { nombre : '', apellido : '', telefono : '', id : 0, email : '', fechaNacimiento : new Date(), provincia : '', localidad : '' }
+
+        this.provincias = this.localidadService.buscarProvincia();
+   
+        this.formularioPrincipal = this.fb.group({
+          nombre : ['', [Validators.required, Validators.maxLength(15)]], apellido : ['', [Validators.required, Validators.maxLength(15)]],
+          telefono : ['', [Validators.maxLength(15)]], fechaNacimiento : ['', [Validators.required]],
+          email : ['',[Validators.required, Validators.email,Validators.maxLength(15)]], provincia : ['', [Validators.required]], localidad : ['', [Validators.required]]
+        });
+    
+        this.formularioPrincipal.get('provincia')?.valueChanges.pipe(debounceTime(250)).subscribe((value) => 
+          this.localidadService.buscarLocalidad(value).subscribe((value) => this.localidades = value))
+    
+
       }
     })
 
-    this.provincias = this.localidadService.buscarProvincia();
-   
-    this.formularioPrincipal = this.fb.group({
-      nombre : ['', [Validators.required, Validators.maxLength(15)]],
-      apellido : ['', [Validators.required, Validators.maxLength(15)]],
-      telefono : ['', [Validators.maxLength(15)]],
-      fechaNacimiento : ['', [Validators.required]],
-      email : ['',[Validators.required, Validators.email,Validators.maxLength(15)]],
-      provincia : ['', [Validators.required]],
-      localidad : ['', [Validators.required]]
-    });
-
-    this.formularioPrincipal.get('provincia')?.valueChanges.pipe(debounceTime(250)).subscribe((value) => 
-      this.localidadService.buscarLocalidad(value).subscribe((value) => this.localidades = value))
   }
 
   submit() : void {
     if(this.formularioPrincipal.valid) {
-      this.Alumno.nombre = this.formularioPrincipal.get('nombre')?.value;
-      this.Alumno.apellido = this.formularioPrincipal.get('apellido')?.value;
-      this.Alumno.telefono = this.formularioPrincipal.get('telefono')?.value;
-      this.Alumno.email = this.formularioPrincipal.get('email')?.value;
-      this.Alumno.fechaNacimiento = new Date(this.formularioPrincipal.get('fechaNacimiento')?.value);
-      if(this.Alumno.id == 0) {
+
+      if(this.FormType == "Create") {
+        this.Alumno.nombre = this.formularioPrincipal.get('nombre')?.value;
+        this.Alumno.apellido = this.formularioPrincipal.get('apellido')?.value;
+        this.Alumno.telefono = this.formularioPrincipal.get('telefono')?.value;
+        this.Alumno.email = this.formularioPrincipal.get('email')?.value;
+        this.Alumno.fechaNacimiento = new Date(this.formularioPrincipal.get('fechaNacimiento')?.value);
         this.Alumno.provincia = this.formularioPrincipal.get('provincia')?.value;
         this.Alumno.localidad = this.formularioPrincipal.get('localidad')?.value;
+        this.cursoService.addAlumno(this.Alumno);
+        this.router.navigate(['Alumno/Index'])
       }
-      this.cursoService.addAlumno(this.Alumno);
-      this.router.navigate(['Alumno'])
+      if(this.FormType == "Update") {
+        this.Alumno.nombre = this.formularioPrincipal.get('nombre')?.value;
+        this.Alumno.apellido = this.formularioPrincipal.get('apellido')?.value;
+        this.Alumno.telefono = this.formularioPrincipal.get('telefono')?.value;
+        this.Alumno.email = this.formularioPrincipal.get('email')?.value;
+        this.Alumno.fechaNacimiento = new Date(this.formularioPrincipal.get('fechaNacimiento')?.value);
+        this.Alumno.provincia = this.Alumno.provincia;
+        this.Alumno.localidad = this.Alumno.localidad;
+        this.cursoService.updateAlumno(this.Alumno);
+        this.router.navigate(['Alumno/Index'])
+      }
+      if(this.FormType == "Delete") {
+        this.cursoService.removeAlumno(this.Alumno.id);
+        this.router.navigate(['Alumno/Index'])
+
+      }
+
+
+
     }
 
   }
