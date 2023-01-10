@@ -8,6 +8,7 @@ import { LocalidadService } from '../../../../Services/localidad.service';
 import { CursoServiceService } from '../../../../Services/curso-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Parametros } from '../../../../Interfaces/ILocalidad';
+import { AlumnoService } from 'src/app/Services/alumno.service';
 
 @Component({
   selector: 'app-alta-alumno',
@@ -19,14 +20,13 @@ export class AltaAlumnoComponent implements OnInit {
   Alumno : Alumno;
  
   public FormType : string;
-  public CurrentId : Number;
   public Provincia : string;
 
   public formularioPrincipal: FormGroup;
   public localidades : Localidad[];
   public provincias: Observable<Provincia[]>;
 
-  constructor(private activateRoute : ActivatedRoute, private router : Router, private fb : FormBuilder, public localidadService : LocalidadService, public cursoService : CursoServiceService) {}
+  constructor(private activateRoute : ActivatedRoute, private router : Router, private fb : FormBuilder, public localidadService : LocalidadService, public alumnoService: AlumnoService) {}
 
   ngOnInit(): void {
 
@@ -35,7 +35,7 @@ export class AltaAlumnoComponent implements OnInit {
       this.FormType = value[0].path.toString();
       if(this.FormType == "Update" || this.FormType == "Delete") {
         this.activateRoute.params.subscribe(_param => {
-          this.cursoService.getAlumnoById(_param["parametro"]).subscribe(value => {
+          this.alumnoService.getById(_param["parametro"]).subscribe(value => {
             if(value){
                 this.Alumno = value
                 this.Provincia = this.Alumno.provincia;
@@ -86,7 +86,7 @@ export class AltaAlumnoComponent implements OnInit {
         this.Alumno.fechaNacimiento = new Date(this.formularioPrincipal.get('fechaNacimiento')?.value);
         this.Alumno.provincia = this.formularioPrincipal.get('provincia')?.value;
         this.Alumno.localidad = this.formularioPrincipal.get('localidad')?.value;
-        this.cursoService.addAlumno(this.Alumno);
+        this.alumnoService.add(this.Alumno);
         this.router.navigate(['Alumno/Index'])
       }
       if(this.FormType == "Update") {
@@ -97,11 +97,11 @@ export class AltaAlumnoComponent implements OnInit {
         this.Alumno.fechaNacimiento = new Date(this.formularioPrincipal.get('fechaNacimiento')?.value);
         this.Alumno.provincia = this.Alumno.provincia;
         this.Alumno.localidad = this.Alumno.localidad;
-        this.cursoService.updateAlumno(this.Alumno);
+        this.alumnoService.update(this.Alumno);
         this.router.navigate(['Alumno/Index'])
       }
       if(this.FormType == "Delete") {
-        this.cursoService.removeAlumno(this.Alumno.id);
+        this.alumnoService.remove(this.Alumno.id);
         this.router.navigate(['Alumno/Index'])
 
       }

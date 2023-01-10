@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Alumno } from 'src/app/Interfaces/IAlumno';
-import { CursoServiceService } from '../../../../Services/curso-service.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { AlumnoService } from 'src/app/Services/alumno.service';
 
 @Component({
   selector: 'app-lista-alumno',
@@ -18,13 +18,13 @@ export class ListaAlumnoComponent implements OnInit {
 
   displayedColumns: string[] = ['id','editar','remover', 'nombre', 'telefono', 'fechaNacimiento', 'email', 'provincia', 'localidad'];
 
-  constructor(public cursoService: CursoServiceService,  private router : Router) { 
+  constructor(public alumnoService: AlumnoService,  private router : Router) { 
     this.Alumnos = [];
   }
 
   ngOnInit(): void {
 
-    this.Alumnos$ = this.cursoService.getAlumnos();
+    this.Alumnos$ = this.alumnoService.getAll();
 
     this.Alumnos$.subscribe((alumnos) => {
       this.Alumnos = alumnos;
