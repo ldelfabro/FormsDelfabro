@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { CursoServiceService } from '../../../Services/curso-service.service';
 import { LocalidadService } from '../../../Services/localidad.service';
 
 @Component({

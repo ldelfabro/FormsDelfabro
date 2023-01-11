@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Alumno } from 'src/app/Interfaces/IAlumno';
-import { CursoServiceService } from '../../../../Services/curso-service.service';
-import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-index-alumno',
