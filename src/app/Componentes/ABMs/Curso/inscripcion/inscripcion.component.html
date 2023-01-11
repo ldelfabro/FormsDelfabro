@@ -7,7 +7,7 @@
     <hr>
     <div class="form-group col-md 10">
         <i *ngIf="Alumnos.length == 0">No se encontraron elementos registrados</i>
-        <table *ngIf="Alumnos.length > 0" mat-table [dataSource]="Alumnos" class="mat-elevation-z8">
+        <table *ngIf="Alumnos.length > 0" mat-table [dataSource]="Alumno$" class="mat-elevation-z8">
 
             <ng-container matColumnDef="id">
               <th mat-header-cell *matHeaderCellDef> ID </th>

@@ -14,11 +14,11 @@ import { CursoService } from 'src/app/Services/curso.service';
 })
 export class ModalAlumnoIngresarComponent implements OnInit {
 
-  Alumnos : Alumno [];
+  public Alumnos : Alumno [];
   public Curso : Curso;
   public formularioPrincipal: FormGroup;
-  Alumnos$ : Observable<Alumno[]>;
-  Cursos$ : Observable<Curso>;
+  private  Alumnos$ : Observable<Alumno[]>;
+  private Cursos$ : Observable<Curso>;
 
   constructor(public cursoService: CursoService, public alumnoService: AlumnoService, private fb : FormBuilder, public dialogRef: MatDialogRef<ModalAlumnoIngresarComponent>,
     @Inject(MAT_DIALOG_DATA) public data: number) { }
@@ -31,8 +31,8 @@ export class ModalAlumnoIngresarComponent implements OnInit {
       this.Alumnos = alumnos;   
       this.Cursos$ = this.cursoService.getById(this.data);
       this.Cursos$.subscribe((value) => {
-        this.Curso = value;
-        var _alumnosFinal : Alumno [] = [];
+      this.Curso = value;
+      var _alumnosFinal : Alumno [] = [];
           this.Alumnos.forEach(function(element) {
               
               var rta = true;
@@ -47,14 +47,13 @@ export class ModalAlumnoIngresarComponent implements OnInit {
       })
     })
 
-
     this.formularioPrincipal = this.fb.group({
        alumnos : ['', [Validators.required]]
     });
 
   }
 
-  onSubmit () : void {
+  onSubmit() : void {
     if(this.formularioPrincipal.valid){
       let alumnoIngresar : Alumno = this.formularioPrincipal.get('alumnos')?.value;
       this.cursoService.addAlumno(this.Curso.id, alumnoIngresar);

@@ -1,9 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Alumno } from 'src/app/Interfaces/IAlumno';
-import { Curso } from 'src/app/Interfaces/ICurso';
 import { CursoService } from 'src/app/Services/curso.service';
 import { ModalAlumnoIngresarComponent } from '../modal-alumno-ingresar/modal-alumno-ingresar.component';
 
@@ -18,12 +17,16 @@ export class InscripcionComponent implements OnInit {
   @Input() FormType : string;
   Alumnos : Alumno[] = [];
   Alumno$ : Observable<Alumno[]>;
+
+
   displayedColumnsAlumnos: string[] = ['id','remover', 'nombre', 'telefono', 'fechaNacimiento', 'email', 'provincia', 'localidad'];
   public formularioPrincipal: FormGroup;
 
-  constructor(public cursoService : CursoService, public dialog: MatDialog, private fb : FormBuilder) { }
+  constructor(public cursoService : CursoService, public dialog: MatDialog, private fb : FormBuilder, private changeDetectorRefs: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+
+
     this.Alumno$ = this.cursoService.getAlumnosById(this.cursoId);
 
     this.Alumno$.subscribe(value => {
@@ -42,7 +45,7 @@ export class InscripcionComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalAlumnoIngresarComponent, {data : this.cursoId});
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result)
+        console.log(result);
     });
 
   }
