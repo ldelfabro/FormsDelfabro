@@ -14,7 +14,7 @@ export class ListaCursoComponent implements OnInit {
   Cursos : Curso [];
   Curso$ : Observable<Curso[]>;
  
-  displayedColumns: string[] = ['id','editar','remover', 'nombre',  'descripcion', 'comision', 'cantidadAlumnos', 'cantidadProfesores', 'cantidadMaterias'];
+  displayedColumns: string[] = ['id','inscripcion', 'editar','remover', 'nombre',  'descripcion', 'comision', 'cantidadAlumnos', 'cantidadProfesores', 'cantidadMaterias'];
 
   constructor(public service: CursoService,  private router : Router) { }
 
@@ -31,6 +31,9 @@ export class ListaCursoComponent implements OnInit {
   }
   remover(id : number) : void {
     this.router.navigate(['Curso/Delete/' + id])
+  }
+  legajo(id : number) : void {
+    this.router.navigate(['Curso/View/' + id])
   }
 
 }

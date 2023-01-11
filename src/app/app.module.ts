@@ -7,7 +7,7 @@ import { TituloDirective } from './Directivas/titulo.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModuleModule } from './Componentes/Layout/layout-module.module';
 import { AlumnoModuleModule } from './Componentes/ABMs/Alumno/alumno-module.module';
-import { ProfesorModuleModule } from './Componentes/ABMs/Profesor/profesor-module.module';
+import { UsuarioModuleModule } from './Componentes/ABMs/Usuarios/profesor-module.module';
 import { MaterialModule } from './modules/material/material.module';
 import { CursoModule } from './Componentes/ABMs/Curso/curso.module';
 
@@ -24,7 +24,7 @@ import { CursoModule } from './Componentes/ABMs/Curso/curso.module';
     MaterialModule,
     LayoutModuleModule,
     AlumnoModuleModule,
-    ProfesorModuleModule,
+    UsuarioModuleModule,
     CursoModule   
     ],
   providers: [],

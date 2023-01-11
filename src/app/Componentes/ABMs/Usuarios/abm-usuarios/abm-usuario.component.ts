@@ -6,10 +6,10 @@ import { ProfesorService } from 'src/app/Services/profesor.service';
 
 @Component({
   selector: 'app-abm-profesor',
-  templateUrl: './abm-profesor.component.html',
-  styleUrls: ['./abm-profesor.component.css']
+  templateUrl: './abm-usuario.component.html',
+  styleUrls: ['./abm-usuario.component.css']
 })
-export class AbmProfesorComponent implements OnInit {
+export class AbmUsuarioComponent implements OnInit {
 
   Profesor : Profesor;
   public formularioPrincipal: FormGroup;

@@ -1,5 +1,3 @@
-<br>
-<h4 appTitulo>{{FormType == 'Create' ? 'Nuevo' : FormType == 'Delete' ? 'Eliminar' : 'Actualizar'}} Profesor</h4>
 <form class="form" [formGroup]="formularioPrincipal" style="min-height: 400px;min-width: 400px;" (ngSubmit)="submit()" class="col-md-4">
     <div class="row" class="row" *ngIf="FormType == 'Create' || FormType == 'Update'">
     <p>
@@ -48,7 +46,8 @@
 
     <div mat-dialog-actions style="text-align: right;">
         <button *ngIf="!formularioPrincipal.valid" mat-raised-button disabled>{{FormType == 'Create' ? 'Nuevo' : FormType == 'Delete' ? 'Eliminar' : 'Actualizar'}}</button>
-        <button *ngIf="formularioPrincipal.valid" mat-raised-button color="primary" cdkFocusInitial type="submit">{{FormType == 'Create' ? 'Nuevo' : FormType == 'Delete' ? 'Eliminar' : 'Actualizar'}}</button>
+        <button *ngIf="formularioPrincipal.valid && FormType == 'Delete'" mat-raised-button color="warn" cdkFocusInitial type="submit">Eliminar</button>
+        <button *ngIf="formularioPrincipal.valid && FormType != 'Delete'" mat-raised-button color="primary" cdkFocusInitial type="submit">{{FormType == 'Create' ? 'Nuevo' : FormType == 'Delete' ? 'Eliminar' : 'Actualizar'}}</button>
         <button mat-raised-button color="primary" routerLink="/Profesor/Index" style="margin-left: 10px;">Volver</button>
     </div>
     

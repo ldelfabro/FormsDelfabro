@@ -10,6 +10,7 @@ const rutas : Routes = [
   { path: 'Index', component : ListaCursoComponent },
   { path: 'Create', component : AbmCursoComponent },
   { path: 'Update/:parametro', component : AbmCursoComponent },
+  { path: 'View/:parametro', component : AbmCursoComponent },
   { path: 'Delete/:parametro', component : AbmCursoComponent }]
 }]
 

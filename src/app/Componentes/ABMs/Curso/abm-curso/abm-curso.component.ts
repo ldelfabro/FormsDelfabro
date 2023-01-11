@@ -32,7 +32,7 @@ export class AbmCursoComponent implements OnInit {
     this.activateRoute.url.subscribe(value => {
       
       this.FormType = value[0].path.toString();
-      if(this.FormType == "Update" || this.FormType == "Delete") {
+      if(this.FormType != 'Create') {
         this.activateRoute.params.subscribe(_param => {
           this.parametroId = _param["parametro"];
           this.Curso$ = this.cursoService.getById(_param["parametro"]);
@@ -63,11 +63,17 @@ export class AbmCursoComponent implements OnInit {
 
       if(this.FormType == "Create") {
         this.Curso.nombre = this.formularioPrincipal.get('nombre')?.value;
+        this.Curso.descripcion = this.formularioPrincipal.get('descripcion')?.value;
+        this.Curso.comision = this.formularioPrincipal.get('comision')?.value;
+
         this.cursoService.add(this.Curso);
         this.router.navigate(['Curso/Index'])
       }
       if(this.FormType == "Update") {
         this.Curso.nombre = this.formularioPrincipal.get('nombre')?.value;
+        this.Curso.descripcion = this.formularioPrincipal.get('descripcion')?.value;
+        this.Curso.comision = this.formularioPrincipal.get('comision')?.value;
+        
         this.cursoService.update(this.Curso);
         this.router.navigate(['Curso/Index'])
       }

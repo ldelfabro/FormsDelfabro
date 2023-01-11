@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IndexProfesorComponent } from './index-profesor/index.component';
-import { ListaProfesorComponent } from './lista/lista.component';
+import { IndexUsuarioComponent } from './index-usuarios/index.component';
+import { ListaUsuarioComponent } from './lista/lista.component';
 import { MaterialModule } from 'src/app/modules/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipeModuleModule } from 'src/app/Pipes/pipe-module.module';
 import { RouterModule } from '@angular/router';
-import { ProfesorModuleRoutingModule } from './profesor-module-routing.module';
-import { AbmProfesorComponent } from './abm-profesor/abm-profesor.component';
+import { UsuarioModuleRoutingModule } from './usuario-module-routing.module';
+import {  AbmUsuarioComponent } from './abm-usuarios/abm-usuario.component';
 
 @NgModule({
   declarations: [
-    IndexProfesorComponent,
-    ListaProfesorComponent,
-    AbmProfesorComponent
+    IndexUsuarioComponent,
+    ListaUsuarioComponent,
+    AbmUsuarioComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +22,7 @@ import { AbmProfesorComponent } from './abm-profesor/abm-profesor.component';
     FormsModule,
     ReactiveFormsModule,
     PipeModuleModule,
-    ProfesorModuleRoutingModule
+    UsuarioModuleRoutingModule
   ]
 })
-export class ProfesorModuleModule { }
+export class UsuarioModuleModule { }

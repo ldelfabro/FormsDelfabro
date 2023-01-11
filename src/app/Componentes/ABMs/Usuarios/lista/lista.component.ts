@@ -9,7 +9,7 @@ import { ProfesorService } from 'src/app/Services/profesor.service';
   templateUrl: './lista.component.html',
   styleUrls: ['./lista.component.css']
 })
-export class ListaProfesorComponent implements OnInit {
+export class ListaUsuarioComponent implements OnInit {
 
   Profesores : Profesor [];
   Profesor$ : Observable<Profesor[]>;

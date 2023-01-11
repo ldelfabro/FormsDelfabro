@@ -5,7 +5,7 @@
             <mat-icon>menu</mat-icon>
         </button>
 
-        <span *ngIf="logueado" >Sistema de notas: Bienvenido {{Profesor | nombreCompletoProfesor}}</span>
+        <span *ngIf="logueado" >Sistema de control de alumnos: Bienvenido</span>
         <span *ngIf="!logueado">Sistema de notas</span>
         <span class="example-spacer"></span>       
         <button *ngIf="!logueado" mat-flat-button (click)="Loguear()">Login</button>&nbsp;&nbsp;
@@ -17,16 +17,16 @@
 </div>
 
 <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/Profesor/Index">
-      <mat-icon>home</mat-icon>
+    <button mat-menu-item routerLink="/Profesor/Index" style="min-width: 180px;">
+      <mat-icon>assignment_ind</mat-icon>
       <span>Usuarios</span>
     </button>
-    <button mat-menu-item  routerLink="/Alumno/Index">
-        <mat-icon>home</mat-icon>
+    <button mat-menu-item  routerLink="/Alumno/Index" style="min-width: 180px;">
+        <mat-icon>person</mat-icon>
         <span>Alumnos</span>
     </button> 
-    <button mat-menu-item  routerLink="/Curso/Index">
-        <mat-icon>home</mat-icon>
+    <button mat-menu-item  routerLink="/Curso/Index" style="min-width: 180px;">
+        <mat-icon>school</mat-icon>
         <span>Cursos</span>
     </button> 
     <button mat-menu-item  routerLink="/">

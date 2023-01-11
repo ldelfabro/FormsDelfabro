@@ -1,6 +1,5 @@
-<br>
 <form class="form" [formGroup]="formularioPrincipal" style="min-height: 600px;min-width: 800px;" (ngSubmit)="submit()" class="col-md-4">
-    <div class="row" class="row" *ngIf="FormType == 'Create'">
+    <div class="row" class="row" *ngIf="FormType == 'Create' || FormType == 'Update' ">
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Nombre del curso</mat-label>
@@ -35,14 +34,14 @@
 
    </div>
    
-  <div class="row" *ngIf="FormType == 'Delete' || FormType == 'Update'">
+  <div class="row" *ngIf="FormType == 'Delete' || FormType == 'View'">
       <h3>Nombre del curso:  {{Curso.nombre}}</h3><br>
       <h3>Descripción:  {{Curso.descripcion}}</h3><br>
       <h3>Comisión:  {{Curso.comision}}</h3>
 
   </div>
 
-  <div *ngIf="FormType == 'Delete' || FormType == 'Update'" class="p-3 mb-2 bg-light text-dark" style="border:1px solid lightgrey;"> 
+  <div *ngIf="FormType == 'View'" class="p-3 mb-2 bg-light text-dark" style="border:1px solid lightgrey;"> 
 
     <app-inscripcion [cursoId]="parametroId" [FormType]="FormType"></app-inscripcion>
 
@@ -57,7 +56,7 @@
     <div mat-dialog-actions style="text-align: right;">
         <button *ngIf="!formularioPrincipal.valid && FormType != 'Update'" mat-raised-button disabled>{{FormType == 'Create' ? 'Nuevo' : FormType == 'Delete' ? 'Eliminar' : 'Actualizar'}}</button>
         <button *ngIf="formularioPrincipal.valid && FormType == 'Delete'" mat-raised-button color="warn" cdkFocusInitial type="submit">Eliminar</button>
-        <button *ngIf="formularioPrincipal.valid && FormType == 'Create'" mat-raised-button color="primary" cdkFocusInitial type="submit">Nuevo</button>
+        <button *ngIf="formularioPrincipal.valid && (FormType == 'Create' || FormType == 'Update')" mat-raised-button color="primary" cdkFocusInitial type="submit">{{FormType == 'Create' ? 'Nuevo' : FormType == 'Update' ? 'Actualizar' : ''}}</button>
         <button mat-raised-button color="primary" routerLink="/Curso/Index" style="margin-left: 10px;">Volver</button>
     </div>
     
