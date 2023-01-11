@@ -29,18 +29,15 @@
       *ngIf="formularioPrincipal.get('comision')?.errors?.['maxlength']">
       Este campo debe tener como máximo 15 caracteres.</small>
   </p>
-
-
-
    </div>
    
-  <div class="row" *ngIf="FormType == 'Delete' || FormType == 'View'">
-      <h3>Nombre del curso:  {{Curso.nombre}}</h3><br>
-      <h3>Descripción:  {{Curso.descripcion}}</h3><br>
-      <h3>Comisión:  {{Curso.comision}}</h3>
-
+  <div class="row" *ngIf="FormType == 'Delete' || FormType == 'View'" style="padding-bottom:20px;">
+    <b>Nombre del curso:  {{Curso.nombre}}</b>
+    <br>
+    <b>Descripción:  {{Curso.descripcion}}</b>
+    <br>
+    <b>Comisión:  {{Curso.comision}}</b>
   </div>
-
   <div *ngIf="FormType == 'View'" class="p-3 mb-2 bg-light text-dark" style="border:1px solid lightgrey;"> 
 
     <app-inscripcion [cursoId]="parametroId" [FormType]="FormType"></app-inscripcion>
