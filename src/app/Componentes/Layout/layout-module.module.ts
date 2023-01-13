@@ -29,11 +29,7 @@ import { PrimerEntregableComponent } from './Principal/principal.component';
     FormsModule,
     ReactiveFormsModule,
     PipeModuleModule,
-    LayoutModuleRoutingModule,
     MaterialModule
-  ],
-  exports : [
-    PrimerEntregableComponent
   ]
 })
 export class LayoutModuleModule { }
