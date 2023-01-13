@@ -67,7 +67,7 @@ export class AbmCursoComponent implements OnInit {
         this.Curso.comision = this.formularioPrincipal.get('comision')?.value;
 
         this.cursoService.add(this.Curso);
-        this.router.navigate(['Curso/Index'])
+        this.router.navigate(['/home/curso/Index'])
       }
       if(this.FormType == "Update") {
         this.Curso.nombre = this.formularioPrincipal.get('nombre')?.value;
@@ -75,11 +75,11 @@ export class AbmCursoComponent implements OnInit {
         this.Curso.comision = this.formularioPrincipal.get('comision')?.value;
         
         this.cursoService.update(this.Curso);
-        this.router.navigate(['Curso/Index'])
+        this.router.navigate(['/home/curso/Index'])
       }
       if(this.FormType == "Delete") {
         this.cursoService.remove(this.Curso.id);
-        this.router.navigate(['Curso/Index'])
+        this.router.navigate(['/home/curso/Index'])
       }
     }
   }

@@ -11,6 +11,11 @@ const rutas : Routes = [
     { path: 'Create', component : AbmUsuarioComponent },
     { path: 'Update/:parametro', component : AbmUsuarioComponent },
     { path: 'Delete/:parametro', component : AbmUsuarioComponent }]
+  },
+  {
+    path: '',
+    redirectTo: 'Index',
+    pathMatch: 'full',
   }
 ]
 

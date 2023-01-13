@@ -57,18 +57,18 @@ export class AbmUsuarioComponent implements OnInit {
         this.Profesor.apellido = this.formularioPrincipal.get('apellido')?.value;
         this.Profesor.email = this.formularioPrincipal.get('email')?.value;
         this.profesorService.add(this.Profesor);
-        this.router.navigate(['Profesor/Index'])
+        this.router.navigate(['/home/usuario/Index'])
       }
       if(this.FormType == "Update") {
         this.Profesor.nombre = this.formularioPrincipal.get('nombre')?.value;
         this.Profesor.apellido = this.formularioPrincipal.get('apellido')?.value;
         this.Profesor.email = this.formularioPrincipal.get('email')?.value;
         this.profesorService.update(this.Profesor);
-        this.router.navigate(['Profesor/Index'])
+        this.router.navigate(['/home/usuario/Index'])
       }
       if(this.FormType == "Delete") {
         this.profesorService.remove(this.Profesor.id);
-        this.router.navigate(['Profesor/Index'])
+        this.router.navigate(['/home/usuario/Index'])
       }
     
     }

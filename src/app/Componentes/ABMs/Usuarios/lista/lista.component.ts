@@ -27,10 +27,10 @@ export class ListaUsuarioComponent implements OnInit {
   }
 
   actualizar(id : number) : void {
-    this.router.navigate(['Profesor/Update/' + id])
+    this.router.navigate(['/home/usuario/Update/' + id])
   }
   remover(id : number) : void {
-    this.router.navigate(['Profesor/Delete/' + id])
+    this.router.navigate(['/home/usuario/Delete/' + id])
   }
 
   CrearNuevo() : void {
