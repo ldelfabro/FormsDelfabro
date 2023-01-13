@@ -6,7 +6,7 @@ import { IndexUsuarioComponent } from './index-usuarios/index.component';
 import { AbmUsuarioComponent } from './abm-usuarios/abm-usuario.component';
 
 const rutas : Routes = [
-  { path : 'Profesor', component : IndexUsuarioComponent, children : [
+  { path : '', component : IndexUsuarioComponent, children : [
     { path: 'Index', component : ListaUsuarioComponent },    
     { path: 'Create', component : AbmUsuarioComponent },
     { path: 'Update/:parametro', component : AbmUsuarioComponent },
@@ -18,7 +18,7 @@ const rutas : Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(rutas)
+    RouterModule.forChild(rutas)
   ],
   exports: [
     RouterModule

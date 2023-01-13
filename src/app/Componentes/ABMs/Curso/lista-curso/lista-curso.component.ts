@@ -27,13 +27,17 @@ export class ListaCursoComponent implements OnInit {
   }
 
   actualizar(id : number) : void {
-    this.router.navigate(['Curso/Update/' + id])
+    this.router.navigate(['/home/curso/Update/' + id])
   }
   remover(id : number) : void {
-    this.router.navigate(['Curso/Delete/' + id])
+    this.router.navigate(['/home/curso/Delete/' + id])
   }
   legajo(id : number) : void {
-    this.router.navigate(['Curso/View/' + id])
+    this.router.navigate(['/home/curso/View/' + id])
+  }
+
+  CrearNuevo() : void {
+    this.router.navigate(['/home/curso/Create'])
   }
 
 }

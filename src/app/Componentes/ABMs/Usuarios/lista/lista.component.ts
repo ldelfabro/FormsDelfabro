@@ -32,4 +32,9 @@ export class ListaUsuarioComponent implements OnInit {
   remover(id : number) : void {
     this.router.navigate(['Profesor/Delete/' + id])
   }
+
+  CrearNuevo() : void {
+    this.router.navigate(['/home/usuario/Create'])
+  }
+
 }

@@ -30,9 +30,12 @@ export class ListaAlumnoComponent implements OnInit {
 
   }
   actualizar(id : number) : void {
-    this.router.navigate(['Alumno/Update/' + id])
+    this.router.navigate(['/home/alumno/Update/' + id])
   }
   remover(id : number) : void {
-    this.router.navigate(['Alumno/Delete/' + id])
+    this.router.navigate(['/home/alumno/Delete/' + id])
+  }
+  CrearNuevo() : void {
+    this.router.navigate(['/home/alumno/Create'])
   }
 }

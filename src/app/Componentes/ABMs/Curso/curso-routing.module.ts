@@ -6,7 +6,7 @@ import { ListaCursoComponent } from './lista-curso/lista-curso.component';
 import { AbmCursoComponent } from './abm-curso/abm-curso.component';
 
 const rutas : Routes = [
-  { path : 'Curso', component : IndexCursoComponent, children : [
+  { path : '', component : IndexCursoComponent, children : [
   { path: 'Index', component : ListaCursoComponent },
   { path: 'Create', component : AbmCursoComponent },
   { path: 'Update/:parametro', component : AbmCursoComponent },
@@ -18,7 +18,7 @@ const rutas : Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(rutas)
+    RouterModule.forChild(rutas)
   ],
   exports: [
     RouterModule

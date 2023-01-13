@@ -6,18 +6,19 @@ import { ListaAlumnoComponent } from './lista-alumno/lista-alumno.component';
 import { IndexAlumnoComponent } from './index-alumno/index-alumno.component';
 
 const rutas : Routes = [
-  { path : 'Alumno', component : IndexAlumnoComponent, children : [
+  { path : '', component : IndexAlumnoComponent, children : [
   { path: 'Index', component : ListaAlumnoComponent },
   { path: 'Create', component : AltaAlumnoComponent },
   { path: 'Update/:parametro', component : AltaAlumnoComponent },
   { path: 'Delete/:parametro', component : AltaAlumnoComponent }]
 }]
 
+
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(rutas)
+    RouterModule.forChild(rutas)
   ],
   exports: [
     RouterModule
