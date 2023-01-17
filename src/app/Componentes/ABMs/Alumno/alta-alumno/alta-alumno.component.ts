@@ -44,7 +44,7 @@ export class AltaAlumnoComponent implements OnInit {
           this.formularioPrincipal = this.fb.group({
             nombre : ['', [Validators.required, Validators.maxLength(15)]], apellido : ['', [Validators.required, Validators.maxLength(15)]],
             telefono : ['', [Validators.maxLength(15)]], fechaNacimiento : ['', [Validators.required]],
-            email : ['',[Validators.required, Validators.email,Validators.maxLength(15)]]
+            email : ['',[Validators.required, Validators.email,Validators.maxLength(30)]]
           });
         }
         else
@@ -59,7 +59,7 @@ export class AltaAlumnoComponent implements OnInit {
         this.formularioPrincipal = this.fb.group({
           nombre : ['', [Validators.required, Validators.maxLength(15)]], apellido : ['', [Validators.required, Validators.maxLength(15)]],
           telefono : ['', [Validators.maxLength(15)]], fechaNacimiento : ['', [Validators.required]],
-          email : ['',[Validators.required, Validators.email,Validators.maxLength(15)]], provincia : ['', [Validators.required]], localidad : ['', [Validators.required]]
+          email : ['',[Validators.required, Validators.email,Validators.maxLength(30)]], provincia : ['', [Validators.required]], localidad : ['', [Validators.required]]
         });
     
         this.formularioPrincipal.get('provincia')?.valueChanges.pipe(debounceTime(250)).subscribe((value) => 

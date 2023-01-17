@@ -39,7 +39,7 @@ export class AbmUsuarioComponent implements OnInit {
         this.formularioPrincipal = this.fb.group({
           nombre : ['', [Validators.required, Validators.maxLength(15)]], 
           apellido : ['', [Validators.required, Validators.maxLength(15)]],
-          email : ['',[Validators.required, Validators.email,Validators.maxLength(15)]]
+          email : ['',[Validators.required, Validators.email,Validators.maxLength(30)]]
         });
       }
       else          

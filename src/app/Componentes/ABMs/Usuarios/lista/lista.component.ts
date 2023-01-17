@@ -19,16 +19,16 @@ export class ListaUsuarioComponent implements OnInit {
   constructor(public service: ProfesorService,  private router : Router) { }
 
   ngOnInit(): void {
-    this.Profesor$ = this.service.getAll();
-
-    this.Profesor$.subscribe((value) => {
-      this.Profesores = value;
+    this.Profesor$ = this.service.data$;
+    this.Profesor$.subscribe((elementos) => {
+      this.Profesores = elementos;
     })
   }
 
   actualizar(id : number) : void {
     this.router.navigate(['/home/usuario/Update/' + id])
   }
+  
   remover(id : number) : void {
     this.router.navigate(['/home/usuario/Delete/' + id])
   }
