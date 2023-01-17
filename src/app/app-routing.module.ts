@@ -2,9 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MiddleComponent } from './Componentes/Layout/middle/middle.component';
 import { PrimerEntregableComponent } from './Componentes/Layout/Principal/principal.component';
+import { AuthGuard } from './Guards/auth.guard';
 
 const routes: Routes = [
   {
+    path: 'login',
+    loadChildren: () => import('./Componentes/login/login.module').then(m => m.LoginModule),
+    data: {
+      nombre: 'Login'
+    }
+    },
+    {
     path: 'home',
     component: PrimerEntregableComponent,
     data: {
@@ -14,6 +22,7 @@ const routes: Routes = [
       {
         path: '',
         component: MiddleComponent,
+        canActivate: [AuthGuard],
         data: {
           nombre: 'Bienvenido'
         }

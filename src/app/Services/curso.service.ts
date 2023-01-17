@@ -11,13 +11,13 @@ export class CursoService {
   public _entity : Curso[] = [];
   public data$ : Observable<Curso[]>;
   private data = new BehaviorSubject<Curso[]>([]);
-
+ 
   constructor() { 
     this.data$ = this.data.asObservable();
     this.data.next(this._entity);
   }
 
-  public getAll() : Observable<Curso[]> {
+ public getAll() : Observable<Curso[]> {
     return this.data.asObservable();
  }
 

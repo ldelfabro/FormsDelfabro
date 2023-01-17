@@ -1,0 +1,54 @@
+<p style="margin-bottom: 0px;">
+    <mat-toolbar color="primary">
+        <span>Sistema de control de alumnos</span>
+        <span class="example-spacer"></span>       
+    </mat-toolbar>
+</p>
+
+
+<div class="row" style="padding-top:5%;">
+    <div class="form-group col-md-4"></div>
+    <div class="form-group col-md-4" style="padding:20px" >
+        <div class="alert alert-danger" role="alert" *ngIf="_errorMsg != ''" >
+            {{_errorMsg}}
+        </div>        
+        <form class="form" [formGroup]="formularioPrincipal" style="min-height: 200px;min-width: 400px;" (ngSubmit)="submit()">
+            <p>
+                <mat-form-field appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input matInput placeholder="Email" formControlName="email">
+                </mat-form-field><br>
+                <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+                *ngIf="formularioPrincipal.get('email')?.errors?.['maxlength']">
+                Este campo debe tener como máximo 30 caracteres.</small>
+                <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+                *ngIf="formularioPrincipal.get('email')?.errors?.['email']">
+                Debe especificar una casilla de correo válida.</small>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input matInput placeholder="Password" type="password" formControlName="pass">
+                </mat-form-field><br>
+                <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+                *ngIf="formularioPrincipal.get('pass')?.errors?.['maxlength']">
+                Este campo debe tener como máximo 30 caracteres.</small>
+            </p>
+        
+            
+            <br>
+            <div mat-dialog-actions style="text-align: center;">
+                <button *ngIf="!formularioPrincipal.valid" mat-raised-button disabled style="width: 100%;">Loguear</button>
+                <button *ngIf="formularioPrincipal.valid" mat-raised-button color="primary" cdkFocusInitial  type="submit"  style="width: 100%;">Loguear</button>
+            </div>
+            
+        </form>
+        <br>
+
+        <div style="text-align: center;">
+            <button mat-raised-button  style="width: 100%;">Registrarse</button>
+        </div>
+        
+    </div>
+    <div class="form-group col-md-4"></div>
+</div>

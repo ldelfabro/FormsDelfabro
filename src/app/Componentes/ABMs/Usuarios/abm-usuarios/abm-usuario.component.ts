@@ -29,7 +29,7 @@ export class AbmUsuarioComponent implements OnInit {
           this.profesorService.getById(_param["parametro"]).subscribe(value => {
             if(value)
                 this.Profesor = value
-          
+
           });
         });
 
