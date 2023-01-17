@@ -3,6 +3,8 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { ModalRegistrarComponent } from '../modal-registrar/modal-registrar.component';
 import { Profesor } from 'src/app/Interfaces/IProfesor';
 import { ModalLoguearComponent } from '../modal-loguear/modal-loguear.component';
+import { ProfesorService } from 'src/app/Services/profesor.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -20,14 +22,16 @@ export class HeaderComponent implements OnInit {
   public flagLogin = false;
   public flagLoginError = false;
   public errorMessage = '';
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private usuarioService : ProfesorService, private router : Router) { }
 
   ngOnInit(): void {
   }
 
 
   Desloguear() : void{
-   // this.logueado = false;
+    this.usuarioService.desloguear();
+    this.router.navigate(['/login'])
+
   }
 
   Loguear() : void {

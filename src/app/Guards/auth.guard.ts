@@ -30,16 +30,12 @@ export class AuthGuard implements CanActivate {
       debugger;
       
       if(this.Logueado){
-        this.router.navigate(['home']);
         return true;
       }
       else{
         this.router.navigate(['login']);
         return false;
       }
-
-
-      
 
   }
  
