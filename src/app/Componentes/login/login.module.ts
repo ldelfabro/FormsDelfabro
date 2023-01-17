@@ -6,14 +6,12 @@ import { LoginRoutingModule } from './login-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from '../Layout/footer/footer.component';
 import { HeaderComponent } from '../Layout/header/header.component';
-import { RegistroComponent } from './registro/registro.component';
 
 
 
 @NgModule({
   declarations: [
-    LoginComponent,
-    RegistroComponent
+    LoginComponent
     ],
   imports: [
     CommonModule,

@@ -8,22 +8,40 @@ import { ProfesorService } from '../Services/profesor.service';
 })
 export class AuthGuard implements CanActivate {
 
+  Logueado : boolean;
+  Logueado$ : Observable<boolean>;
+
+
   constructor(
     private router: Router,
     private usuarioService : ProfesorService
   ) {
+    this.Logueado$ = this.usuarioService.getLogueado();
+
+    this.Logueado$.subscribe((value) => {
+      this.Logueado = value;
+    })
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       
-      if(this.usuarioService.getLogueado()){
-
-      }
+      debugger;
       
-      this.router.navigate(['login']);
-      return false;
+      if(this.Logueado){
+        this.router.navigate(['home']);
+        return true;
+      }
+      else{
+        this.router.navigate(['login']);
+        return false;
+      }
+
+
+      
+
   }
-  
+ 
+
 }

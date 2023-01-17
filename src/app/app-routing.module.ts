@@ -8,13 +8,21 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./Componentes/login/login.module').then(m => m.LoginModule),
-    data: {
-      nombre: 'Login'
-    }
+      data: {
+        nombre: 'Login'
+      }
     },
+    {
+      path: 'registro',
+      loadChildren: () => import('./Componentes/registro/registro.module').then(m => m.RegistroModule),
+        data: {
+          nombre: 'Registrar'
+        }
+    }, 
     {
     path: 'home',
     component: PrimerEntregableComponent,
+    canActivate: [AuthGuard],
     data: {
       nombre: 'home'
     },
@@ -22,7 +30,6 @@ const routes: Routes = [
       {
         path: '',
         component: MiddleComponent,
-        canActivate: [AuthGuard],
         data: {
           nombre: 'Bienvenido'
         }
