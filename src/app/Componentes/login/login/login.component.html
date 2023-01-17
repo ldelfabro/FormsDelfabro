@@ -38,15 +38,15 @@
             
             <br>
             <div mat-dialog-actions style="text-align: center;">
-                <button *ngIf="!formularioPrincipal.valid" mat-raised-button disabled style="width: 100%;">Loguear</button>
-                <button *ngIf="formularioPrincipal.valid" mat-raised-button color="primary" cdkFocusInitial  type="submit"  style="width: 100%;">Loguear</button>
+                <button *ngIf="!formularioPrincipal.valid" mat-raised-button disabled style="width: 100%;"><span>Loguear</span>&nbsp;&nbsp;<mat-icon>login</mat-icon></button>
+                <button *ngIf="formularioPrincipal.valid" mat-raised-button color="primary" cdkFocusInitial  type="submit"  style="width: 100%;"><span>Loguear</span>&nbsp;&nbsp;<mat-icon>login</mat-icon></button>
             </div>
             
         </form>
         <br>
 
         <div style="text-align: center;">
-            <button mat-raised-button  style="width: 100%;" (click)="registrar()">Registrarse</button>
+            <button mat-raised-button color="accent"  style="width: 100%;" (click)="registrar()">Ir a registrarse</button>
         </div>
         
     </div>
