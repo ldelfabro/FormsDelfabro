@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ListaCursoComponent } from './lista-curso.component';
 
 describe('ListaCursoComponent', () => {
@@ -8,7 +9,8 @@ describe('ListaCursoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListaCursoComponent ]
+      declarations: [ ListaCursoComponent ],
+      imports : [RouterTestingModule, HttpClientTestingModule]
     })
     .compileComponents();
   });

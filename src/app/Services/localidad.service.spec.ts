@@ -1,12 +1,13 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-
 import { LocalidadService } from './localidad.service';
 
 describe('LocalidadService', () => {
   let service: LocalidadService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({      imports : [HttpClientTestingModule ]
+    });
     service = TestBed.inject(LocalidadService);
   });
 
