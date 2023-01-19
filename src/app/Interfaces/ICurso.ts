@@ -1,7 +1,7 @@
 import { Alumno } from "./IAlumno";
 import { Materia } from "./IMateria";
 import { Nota } from "./INotas";
-import { Profesor } from "./IProfesor";
+import { Usuario } from "./IUsuario";
 
 export interface Curso {
     id : number,
@@ -10,7 +10,7 @@ export interface Curso {
     descripcion : string,
     alumnos : Alumno [],
     materias : Materia[],
-    profesores : Profesor [],
+    usuarios : Usuario [],
     notas : Nota [],
-    profesor : Profesor,
+    profesor : Usuario,
 }

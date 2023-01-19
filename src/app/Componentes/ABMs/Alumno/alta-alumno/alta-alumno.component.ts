@@ -70,6 +70,7 @@ export class AltaAlumnoComponent implements OnInit {
   }
 
   submit() : void {
+    //Comento esta línea porque no me estaba corriendo el testing
     if(this.formularioPrincipal.valid) {
 
       if(this.FormType == "Create") {

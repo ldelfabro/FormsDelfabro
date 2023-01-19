@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Profesor } from '../Interfaces/IProfesor';
+import { Usuario } from '../Interfaces/IUsuario';
 
 @Pipe({
   name: 'nombreCompletoProfesor'
 })
 export class NombreCompletoProfesorPipe implements PipeTransform {
 
-  transform(value: Profesor, ...args: unknown[]): unknown {
+  transform(value: Usuario, ...args: unknown[]): unknown {
     return value.nombre + " " + value.apellido;
   }
 

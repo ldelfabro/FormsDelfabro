@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
-import { Profesor } from '../Interfaces/IProfesor';
+import { Usuario } from '../Interfaces/IUsuario';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProfesorService {
+export class UsuarioService {
 
-  public data$ : Observable<Profesor[]>;
-  private data = new BehaviorSubject<Profesor[]>([]);
+  public data$ : Observable<Usuario[]>;
+  private data = new BehaviorSubject<Usuario[]>([]);
 
   public _logueado : boolean = false;
   public logueado$ : Observable<boolean>;
@@ -41,19 +41,19 @@ export class ProfesorService {
     this.logueado.next(false);
    }
 
-   public getAll() : Observable<Profesor[]> {
-    return this.httpClient.get<Profesor[]>(environment.baseUrl + 'usuarios');
+   public getAll() : Observable<Usuario[]> {
+    return this.httpClient.get<Usuario[]>(environment.baseUrl + 'usuarios');
    }
 
-   public loguear(email : string, pass : string): Observable<Profesor> {
-    return this.httpClient.get<Profesor[]>(environment.baseUrl + 'usuarios').pipe(map((value : Profesor[]) => value.filter(c => c.email == email && c.pass == pass)[0]));
+   public loguear(email : string, pass : string): Observable<Usuario> {
+    return this.httpClient.get<Usuario[]>(environment.baseUrl + 'usuarios').pipe(map((value : Usuario[]) => value.filter(c => c.email == email && c.pass == pass)[0]));
    }
 
-   public getById(id: number) : Observable<Profesor> {
-    return this.httpClient.get<Profesor[]>(environment.baseUrl + 'usuarios').pipe(map((value : Profesor[]) => value.filter(c => c.id == id)[0]));
+   public getById(id: number) : Observable<Usuario> {
+    return this.httpClient.get<Usuario[]>(environment.baseUrl + 'usuarios').pipe(map((value : Usuario[]) => value.filter(c => c.id == id)[0]));
    }
 
-   public add(alumno : Profesor){
+   public add(alumno : Usuario){
     this.httpClient.post(`${environment.baseUrl}usuarios`, alumno).subscribe({
       next: _ => {
         let nuevaLista = this.data.getValue();
@@ -66,7 +66,7 @@ export class ProfesorService {
     });
    }
 
-  public update(alumno : Profesor) {
+  public update(alumno : Usuario) {
     this.httpClient.put(`${environment.baseUrl}usuarios/${alumno.id}`, alumno).subscribe(_ => {
       let nuevaLista = this.data.getValue().map(p => p.id === alumno.id ? alumno : p);
       this.data.next(nuevaLista);

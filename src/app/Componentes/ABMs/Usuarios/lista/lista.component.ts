@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Profesor } from 'src/app/Interfaces/IProfesor';
-import { ProfesorService } from 'src/app/Services/profesor.service';
+import { Usuario } from 'src/app/Interfaces/IUsuario';
+import { UsuarioService } from 'src/app/Services/usuario.service';
 
 @Component({
   selector: 'app-profesor-lista',
@@ -11,12 +11,12 @@ import { ProfesorService } from 'src/app/Services/profesor.service';
 })
 export class ListaUsuarioComponent implements OnInit {
 
-  Profesores : Profesor [];
-  Profesor$ : Observable<Profesor[]>;
+  Profesores : Usuario [];
+  Profesor$ : Observable<Usuario[]>;
 
   displayedColumns: string[] = ['id','editar','remover', 'nombre', 'email'];
 
-  constructor(public service: ProfesorService,  private router : Router) { }
+  constructor(public service: UsuarioService,  private router : Router) { }
 
   ngOnInit(): void {
     this.Profesor$ = this.service.data$;

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Profesor } from 'src/app/Interfaces/IProfesor';
-import { ProfesorService } from 'src/app/Services/profesor.service';
+import { Usuario } from 'src/app/Interfaces/IUsuario';
+import { UsuarioService } from 'src/app/Services/usuario.service';
 
 @Component({
   selector: 'app-abm-profesor',
@@ -11,11 +11,11 @@ import { ProfesorService } from 'src/app/Services/profesor.service';
 })
 export class AbmUsuarioComponent implements OnInit {
 
-  Profesor : Profesor;
+  Profesor : Usuario;
   public formularioPrincipal: FormGroup;
   public FormType : string;
 
-  constructor(private activateRoute : ActivatedRoute, private router : Router, private fb : FormBuilder, public profesorService: ProfesorService) { }
+  constructor(private activateRoute : ActivatedRoute, private router : Router, private fb : FormBuilder, public profesorService: UsuarioService) { }
 
   ngOnInit(): void {
     

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Profesor } from 'src/app/Interfaces/IProfesor';
-import { ProfesorService } from 'src/app/Services/profesor.service';
+import { Usuario } from 'src/app/Interfaces/IUsuario';
+import { UsuarioService } from 'src/app/Services/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +11,11 @@ import { ProfesorService } from 'src/app/Services/profesor.service';
 })
 export class LoginComponent implements OnInit {
  
-  Profesor : Profesor;
+  Profesor : Usuario;
   _errorMsg : string= '';
   public formularioPrincipal: FormGroup;
   
-  constructor(private fb : FormBuilder, private usuarioService : ProfesorService, private router : Router) { }
+  constructor(private fb : FormBuilder, private usuarioService : UsuarioService, private router : Router) { }
 
   ngOnInit(): void {
 

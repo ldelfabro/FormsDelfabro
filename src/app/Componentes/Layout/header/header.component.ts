@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { ModalRegistrarComponent } from '../modal-registrar/modal-registrar.component';
-import { Profesor } from 'src/app/Interfaces/IProfesor';
+import { Usuario } from 'src/app/Interfaces/IUsuario';
 import { ModalLoguearComponent } from '../modal-loguear/modal-loguear.component';
-import { ProfesorService } from 'src/app/Services/profesor.service';
+import { UsuarioService } from 'src/app/Services/usuario.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() Profesor : Profesor;
-  @Input() Profesores : Profesor [];
+  @Input() Profesor : Usuario;
+  @Input() Profesores : Usuario [];
 
   @Output() evento = new EventEmitter<string>();
 
@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   public flagLogin = false;
   public flagLoginError = false;
   public errorMessage = '';
-  constructor(public dialog: MatDialog, private usuarioService : ProfesorService, private router : Router) { }
+  constructor(public dialog: MatDialog, private usuarioService : UsuarioService, private router : Router) { }
 
   ngOnInit(): void {
   }
@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
 
     this.errorMessage = '';
 
-    var profesor : Profesor = {
+    var profesor : Usuario = {
       nombre : "",
       apellido : "",
       email : "",
@@ -79,7 +79,7 @@ export class HeaderComponent implements OnInit {
 
     this.errorMessage = '';
 
-    var profesor : Profesor = {
+    var profesor : Usuario = {
       nombre : "",
       apellido : "",
       email : "",
@@ -103,7 +103,7 @@ export class HeaderComponent implements OnInit {
 
         if(!existe)
         {        
-          var nuevoProfesor : Profesor = {
+          var nuevoProfesor : Usuario = {
             apellido : result.apellido,
             nombre : result.nombre,
             pass : result.pass,
