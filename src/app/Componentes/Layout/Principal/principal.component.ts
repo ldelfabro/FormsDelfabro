@@ -13,7 +13,7 @@ export class PrimerEntregableComponent implements OnInit {
   public Curso : Curso;
   public evento : string = 'ABMINICIO';
   constructor() { 
-    this.Curso = { descripcion : '', comision: '', id : 0, alumnos : [], profesor : { id: 0, apellido : "", nombre : "", email : "",pass : ""}, profesores : [], materias : [], nombre : "", notas: []}
+    this.Curso = { descripcion : '', comision: '', id : 0, alumnos : [], profesor : { id: 0, apellido : "", nombre : "", email : "",pass : ""}, usuarios : [], materias : [], nombre : "", notas: []}
   }
 
   ngOnInit(): void {

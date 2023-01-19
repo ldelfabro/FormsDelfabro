@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Inject } from '@angular/core';
-import { Profesor } from 'src/app/Interfaces/IUsuario';
+import { Usuario } from 'src/app/Interfaces/IUsuario';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -13,7 +13,7 @@ export class ModalRegistrarComponent implements OnInit {
   public formularioPrincipal: FormGroup;
 
   constructor(private fb : FormBuilder, public dialogRef: MatDialogRef<ModalRegistrarComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Profesor) { }
+    @Inject(MAT_DIALOG_DATA) public data: Usuario) { }
 
   ngOnInit(): void {
 
