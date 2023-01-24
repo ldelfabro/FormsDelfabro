@@ -5,11 +5,8 @@
             <mat-icon>menu</mat-icon>
         </button>
 
-        <span *ngIf="logueado" >Sistema de control de alumnos: Bienvenido</span>
-        <span *ngIf="!logueado">Sistema de notas</span>
+        <span>Sistema de control de alumnos: Bienvenido</span>
         <span class="example-spacer"></span>       
-        <button *ngIf="!logueado" mat-flat-button (click)="Loguear()">Login</button>&nbsp;&nbsp;
-        <button *ngIf="!logueado" mat-flat-button (click)="Registrar()">Registrarse</button>
     </mat-toolbar>
 </p>
 <div class="alert alert-danger" role="alert" *ngIf="errorMessage != ''" >
