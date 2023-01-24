@@ -44,13 +44,35 @@
         
             <p>
                 <mat-form-field appearance="outline">
+                <mat-label>Direccion</mat-label>
+                <input matInput placeholder="Direccion" formControlName="direccion" >
+                </mat-form-field><br>
+                <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+                *ngIf="formularioPrincipal.get('direccion')?.errors?.['maxlength']">
+                Este campo debe tener como máximo 30 caracteres.</small>
+            </p> 
+
+            <p>
+                <mat-form-field appearance="outline">
+                <mat-label>Teléfono</mat-label>
+                <input matInput placeholder="Telefono" formControlName="telefono">
+                </mat-form-field><br>
+                <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+                *ngIf="formularioPrincipal.get('telefono')?.errors?.['maxlength']">
+                Este campo debe tener como máximo 30 caracteres.</small>
+            </p> 
+
+
+            <p>
+                <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
-                <input matInput placeholder="Password" formControlName="pass" type="pass">
+                <input matInput placeholder="Password" formControlName="pass" type="password">
                 </mat-form-field><br>
                 <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
                 *ngIf="formularioPrincipal.get('pass')?.errors?.['maxlength']">
                 Este campo debe tener como máximo 30 caracteres.</small>
             </p>  
+
             <br>
             <br>
 

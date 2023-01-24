@@ -17,14 +17,16 @@ export class RegistroComponent implements OnInit {
   constructor(private fb : FormBuilder, private usuarioService : UsuarioService, private router : Router) { }
 
   ngOnInit(): void {
-    this.Profesor = { nombre : '', apellido : '',  id : 0, email : '', pass: '' }
+    this.Profesor = { nombre : '', apellido : '',  id : 0, email : '', pass: '', direccion: '', perfil : 'user', telefono: '' }
 
 
     this.formularioPrincipal = this.fb.group({
       nombre : ['', [Validators.required, Validators.maxLength(15)]], 
       apellido : ['', [Validators.required, Validators.maxLength(15)]],
       email : ['',[Validators.required, Validators.email,Validators.maxLength(30)]],
-      pass : ['', [Validators.required, Validators.maxLength(30)]]
+      pass : ['', [Validators.required, Validators.maxLength(30)]],
+      direccion : ['', [Validators.required, Validators.maxLength(30)]],
+      telefono : ['', [Validators.required, Validators.maxLength(30)]]
     });
   }
 
@@ -35,6 +37,8 @@ export class RegistroComponent implements OnInit {
         this.Profesor.apellido = this.formularioPrincipal.get('apellido')?.value;
         this.Profesor.email = this.formularioPrincipal.get('email')?.value;
         this.Profesor.pass = this.formularioPrincipal.get('pass')?.value;
+        this.Profesor.direccion = this.formularioPrincipal.get('direccion')?.value;
+        this.Profesor.telefono = this.formularioPrincipal.get('telefono')?.value;
 
         this.usuarioService.add(this.Profesor);
         this.router.navigate(['/login'])

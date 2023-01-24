@@ -36,10 +36,10 @@ export class ModalAlumnoIngresarComponent implements OnInit {
           this.Alumnos.forEach(function(element) {
               
               var rta = true;
-              for(let k = 0; k < value.alumnos.length; k++){
+          /*    for(let k = 0; k < value.alumnos.length; k++){
                   if(value.alumnos[k].id == element.id)
                     rta = false;
-              }
+              }*/
               if(rta)
                 _alumnosFinal.push(element);
           })

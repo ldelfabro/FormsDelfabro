@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, of } from 'rxjs';
 import { Alumno } from '../Interfaces/IAlumno';
 import { Curso } from '../Interfaces/ICurso';
 
@@ -26,7 +26,8 @@ export class CursoService {
  }
 
  public getAlumnosById(id: number) : Observable<Alumno[]> {
-  return this.data.asObservable().pipe(map((value : Curso[]) => value.filter(c => c.id == id)[0].alumnos));
+  return of([]) ;
+ // return this.data.asObservable().pipe(map((value : Curso[]) => value.filter(c => c.id == id)[0].alumnos));
  }
 
  public add(alumno : Curso){
@@ -52,17 +53,17 @@ public remove(id: number) {
 }
 
 public addAlumno(id: number, Alumno : Alumno){
-  this._entity.filter(c=>c.id == id)[0].alumnos.push(Alumno);
-  this.data.next(this._entity);
+  //this._entity.filter(c=>c.id == id)[0].alumnos.push(Alumno);
+ // this.data.next(this._entity);
 }
 public removeAlumno(id: number, idAlumno : number){
 
-  let _curso = this._entity.filter(c => c.id == id)[0];
+ /* let _curso = this._entity.filter(c => c.id == id)[0];
   let _alumnosCurso = _curso.alumnos.filter(c=> c.id != idAlumno);
   _curso.alumnos = _alumnosCurso;
   this._entity.filter(c => c.id == id)[0] = _curso;
 
-  this.data.next(this._entity);
+  this.data.next(this._entity);*/
 }
 
 }

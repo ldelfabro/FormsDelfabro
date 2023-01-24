@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.Profesor = { nombre : '', apellido : '',  id : 0, email : '', pass: '' }
+    this.Profesor = { nombre : '', apellido : '',  id : 0, email : '', pass: '', direccion: '', perfil : '', telefono: '' }
 
     this.formularioPrincipal = this.fb.group({
       email : ['',[Validators.required, Validators.email, Validators.maxLength(30)]],

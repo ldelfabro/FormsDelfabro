@@ -52,7 +52,7 @@ export class AltaAlumnoComponent implements OnInit {
 
       }
       else {
-        this.Alumno = { nombre : '', apellido : '', telefono : '', id : 0, email : '', fechaNacimiento : new Date(), provincia : '', localidad : '' }
+        this.Alumno = { nombre : '', apellido : '', telefono : '', id : 0, email : '', fechaNacimiento : new Date(), provincia : '', localidad : '', perfil: '' }
 
         this.provincias = this.localidadService.buscarProvincia();
    

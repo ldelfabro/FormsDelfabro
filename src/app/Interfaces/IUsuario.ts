@@ -3,5 +3,8 @@ export interface Usuario {
     nombre : string,
     apellido : string,
     pass : string,
-    email : string
+    email : string,
+    direccion : string,
+    telefono : string,
+    perfil : string
 }

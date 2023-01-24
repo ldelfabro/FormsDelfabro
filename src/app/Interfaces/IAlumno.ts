@@ -6,5 +6,6 @@ export interface Alumno {
     fechaNacimiento : Date,
     email : string,
     provincia : string,
-    localidad : string
+    localidad : string,    
+    perfil : string
 }

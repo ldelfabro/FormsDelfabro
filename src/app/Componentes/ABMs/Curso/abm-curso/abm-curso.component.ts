@@ -26,7 +26,7 @@ export class AbmCursoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.Curso = {descripcion: '', comision : '', nombre : '', alumnos: [], usuarios : [], notas : [], materias : [], id : 0, profesor : { apellido : '', email : '', nombre : '', pass : '', id : 0 } }
+    this.Curso = {descripcion: '', comision : '', nombre : '', id : 0, profesor : '', cantidadClases : 0, cantidadHoras : 0 }
 
 
     this.activateRoute.url.subscribe(value => {

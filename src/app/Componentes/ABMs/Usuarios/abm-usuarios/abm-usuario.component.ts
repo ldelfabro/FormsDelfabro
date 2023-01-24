@@ -19,7 +19,7 @@ export class AbmUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.Profesor = { nombre : '', apellido : '',  id : 0, email : '', pass: '' }
+    this.Profesor = { nombre : '', apellido : '',  id : 0, email : '', pass: '', direccion: '', perfil : '', telefono: '' }
 
     this.activateRoute.url.subscribe(value => {
       
