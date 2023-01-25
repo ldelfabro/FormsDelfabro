@@ -11,25 +11,28 @@ import { UsuarioService } from 'src/app/Services/usuario.service';
 })
 export class AbmUsuarioComponent implements OnInit {
 
-  Profesor : Usuario;
+  Usuario : Usuario;
   public formularioPrincipal: FormGroup;
   public FormType : string;
 
-  constructor(private activateRoute : ActivatedRoute, private router : Router, private fb : FormBuilder, public profesorService: UsuarioService) { }
+  constructor(private activateRoute : ActivatedRoute, private router : Router, private fb : FormBuilder, public usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
     
-    this.Profesor = { nombre : '', apellido : '',  id : 0, email : '', pass: '', direccion: '', perfil : '', telefono: '' }
+    this.Usuario = { nombre : '', apellido : '',  id : 0, email : '', pass: '', direccion: '', perfil : 'user', telefono: '' }
 
     this.activateRoute.url.subscribe(value => {
       
       this.FormType = value[0].path.toString();
       if(this.FormType == "Update" || this.FormType == "Delete") {
         this.activateRoute.params.subscribe(_param => {
-          this.profesorService.getById(_param["parametro"]).subscribe(value => {
-            if(value)
-                this.Profesor = value
-
+          this.usuarioService.getById(_param["parametro"]).subscribe(value => {
+            console.log(value)
+            if(value) {
+                this.Usuario = value;
+                if(this.FormType == "Delete")
+                  this.Usuario.pass = "***********";
+            }
           });
         });
 
@@ -39,10 +42,15 @@ export class AbmUsuarioComponent implements OnInit {
         this.formularioPrincipal = this.fb.group({
           nombre : ['', [Validators.required, Validators.maxLength(15)]], 
           apellido : ['', [Validators.required, Validators.maxLength(15)]],
-          email : ['',[Validators.required, Validators.email,Validators.maxLength(30)]]
+          email : ['',[Validators.required, Validators.email,Validators.maxLength(30)]],
+          pass : ['', [Validators.required, Validators.maxLength(30)]],
+          direccion : ['', [Validators.required, Validators.maxLength(30)]],
+          telefono : ['', [Validators.required, Validators.maxLength(30)]],
+          perfil : ['', [Validators.required]]
+
         });
       }
-      else          
+      else  
         this.formularioPrincipal = this.fb.group({ });
 
     })
@@ -53,21 +61,33 @@ export class AbmUsuarioComponent implements OnInit {
     if(this.formularioPrincipal.valid) {
 
       if(this.FormType == "Create") {
-        this.Profesor.nombre = this.formularioPrincipal.get('nombre')?.value;
-        this.Profesor.apellido = this.formularioPrincipal.get('apellido')?.value;
-        this.Profesor.email = this.formularioPrincipal.get('email')?.value;
-        this.profesorService.add(this.Profesor);
+        this.Usuario.nombre = this.formularioPrincipal.get('nombre')?.value;
+        this.Usuario.apellido = this.formularioPrincipal.get('apellido')?.value;
+        this.Usuario.email = this.formularioPrincipal.get('email')?.value;
+
+        this.Usuario.pass = this.formularioPrincipal.get('pass')?.value;
+        this.Usuario.direccion = this.formularioPrincipal.get('direccion')?.value;
+        this.Usuario.telefono = this.formularioPrincipal.get('telefono')?.value;
+        this.Usuario.perfil = this.formularioPrincipal.get('perfil')?.value;
+
+        this.usuarioService.add(this.Usuario);
         this.router.navigate(['/home/usuario/Index'])
       }
       if(this.FormType == "Update") {
-        this.Profesor.nombre = this.formularioPrincipal.get('nombre')?.value;
-        this.Profesor.apellido = this.formularioPrincipal.get('apellido')?.value;
-        this.Profesor.email = this.formularioPrincipal.get('email')?.value;
-        this.profesorService.update(this.Profesor);
+        this.Usuario.nombre = this.formularioPrincipal.get('nombre')?.value;
+        this.Usuario.apellido = this.formularioPrincipal.get('apellido')?.value;
+        this.Usuario.email = this.formularioPrincipal.get('email')?.value;
+
+        this.Usuario.pass = this.formularioPrincipal.get('pass')?.value;
+        this.Usuario.direccion = this.formularioPrincipal.get('direccion')?.value;
+        this.Usuario.telefono = this.formularioPrincipal.get('telefono')?.value;
+        this.Usuario.perfil = this.formularioPrincipal.get('perfil')?.value;
+
+        this.usuarioService.update(this.Usuario);
         this.router.navigate(['/home/usuario/Index'])
       }
       if(this.FormType == "Delete") {
-        this.profesorService.remove(this.Profesor.id);
+        this.usuarioService.remove(this.Usuario.id);
         this.router.navigate(['/home/usuario/Index'])
       }
     

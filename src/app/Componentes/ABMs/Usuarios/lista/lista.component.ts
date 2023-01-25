@@ -14,7 +14,7 @@ export class ListaUsuarioComponent implements OnInit {
   Profesores : Usuario [];
   Profesor$ : Observable<Usuario[]>;
 
-  displayedColumns: string[] = ['id','editar','remover', 'nombre', 'email'];
+  displayedColumns: string[] = ['id','editar','remover', 'nombre', 'email', 'direccion', 'telefono', 'perfil'];
 
   constructor(public service: UsuarioService,  private router : Router) { }
 

@@ -3,7 +3,7 @@
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Nombre</mat-label>
-          <input matInput placeholder="Nombre" [(ngModel)]="Profesor.nombre" formControlName="nombre" >
+          <input matInput placeholder="Nombre" [(ngModel)]="Usuario.nombre" formControlName="nombre" >
         </mat-form-field><br>
         <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
         *ngIf="formularioPrincipal.get('nombre')?.errors?.['maxlength']">
@@ -12,7 +12,7 @@
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Apellido</mat-label>
-          <input matInput placeholder="Apellido" [(ngModel)]="Profesor.apellido" formControlName="apellido">
+          <input matInput placeholder="Apellido" [(ngModel)]="Usuario.apellido" formControlName="apellido">
         </mat-form-field><br>
         <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
         *ngIf="formularioPrincipal.get('apellido')?.errors?.['maxlength']">
@@ -22,7 +22,7 @@
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="Email" [(ngModel)]="Profesor.email" formControlName="email">
+          <input matInput placeholder="Email" [(ngModel)]="Usuario.email" formControlName="email">
         </mat-form-field><br>
         <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
         *ngIf="formularioPrincipal.get('email')?.errors?.['maxlength']">
@@ -31,13 +31,63 @@
         *ngIf="formularioPrincipal.get('email')?.errors?.['email']">
         Debe especificar una casilla de correo válida.</small>
     </p>
+
+    <div class="col-md-12"> 
+      <mat-form-field appearance="fill">
+        <mat-label>Seleccione Perfil</mat-label>
+        <mat-select formControlName="perfil"  [(ngModel)]="Usuario.perfil">
+          <mat-option value="user">user</mat-option>
+          <mat-option value="admin">admin</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <p>
+      <mat-form-field appearance="fill">
+      <mat-label>Direccion</mat-label>
+      <input matInput placeholder="Direccion"  [(ngModel)]="Usuario.direccion"  formControlName="direccion" >
+      </mat-form-field><br>
+      <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+      *ngIf="formularioPrincipal.get('direccion')?.errors?.['maxlength']">
+      Este campo debe tener como máximo 30 caracteres.</small>
+  </p> 
+
+  <p>
+      <mat-form-field appearance="fill">
+      <mat-label>Teléfono</mat-label>
+      <input matInput placeholder="Telefono"  [(ngModel)]="Usuario.telefono"  formControlName="telefono">
+      </mat-form-field><br>
+      <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+      *ngIf="formularioPrincipal.get('telefono')?.errors?.['maxlength']">
+      Este campo debe tener como máximo 30 caracteres.</small>
+  </p> 
+
+
+  <p>
+      <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Password" [(ngModel)]="Usuario.pass" formControlName="pass" type="password">
+      </mat-form-field><br>
+      <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+      *ngIf="formularioPrincipal.get('pass')?.errors?.['maxlength']">
+      Este campo debe tener como máximo 30 caracteres.</small>
+  </p>  
+
   
    </div>
    
   <div class="row" *ngIf="FormType == 'Delete'">
-      <b>Nombre:  {{Profesor | nombreCompletoProfesor}}</b>
+      <b>Nombre:  {{Usuario | nombreCompletoProfesor}}</b>
       <br>
-      <b>Email: {{Profesor.email}}</b>
+      <b>Email: {{Usuario.email}}</b>
+      <br>
+      <b>Perfil: {{Usuario.perfil}}</b>
+      <br>
+      <b>Dirección: {{Usuario.direccion}}</b>
+      <br>
+      <b>Teléfono: {{Usuario.telefono}}</b>
+      <br>
+      <b>Password: {{Usuario.pass}}</b>
   </div>
 
 
