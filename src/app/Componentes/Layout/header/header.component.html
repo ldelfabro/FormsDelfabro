@@ -1,7 +1,7 @@
 <p style="margin-bottom: 0px;">
     <mat-toolbar color="primary">
 
-        <button  *ngIf="logueado" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [matMenuTriggerFor]="menu">
+        <button  mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [matMenuTriggerFor]="menu">
             <mat-icon>menu</mat-icon>
         </button>
 
@@ -18,7 +18,7 @@
         <mat-icon>home</mat-icon>
         <span>Inicio</span>
     </button> 
-    <button mat-menu-item routerLink="usuario/Index" style="min-width: 180px;">
+    <button mat-menu-item routerLink="usuario/Index" style="min-width: 180px;" *ngIf="usuarioLogueado.perfil == 'admin'">
       <mat-icon>assignment_ind</mat-icon>
       <span>Usuarios</span>
     </button>

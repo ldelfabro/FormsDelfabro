@@ -32,7 +32,7 @@ debugger;
       return true;
     }
     else{
-      this.router.navigate(['home/usuario/Index']);
+      this.router.navigate(['home']);
       return false;
     }
   

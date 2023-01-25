@@ -3,6 +3,7 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { Usuario } from 'src/app/Interfaces/IUsuario';
 import { UsuarioService } from 'src/app/Services/usuario.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -16,13 +17,21 @@ export class HeaderComponent implements OnInit {
 
   @Output() evento = new EventEmitter<string>();
 
-  public logueado = true;
-  public flagLogin = false;
-  public flagLoginError = false;
+  usuarioLogueado : Usuario;
+  usuarioLogueado$ : Observable<Usuario>;
+
   public errorMessage = '';
   constructor(public dialog: MatDialog, private usuarioService : UsuarioService, private router : Router) { }
 
   ngOnInit(): void {
+
+    this.usuarioLogueado$ = this.usuarioService.getUsuarioLogueado();
+
+    this.usuarioLogueado$.subscribe((value) => {
+      this.usuarioLogueado = value;
+    })
+
+
   }
 
 

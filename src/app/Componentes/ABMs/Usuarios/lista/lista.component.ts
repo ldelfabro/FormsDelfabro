@@ -14,21 +14,12 @@ export class ListaUsuarioComponent implements OnInit {
   Usuarios : Usuario [];
   Usuario$ : Observable<Usuario[]>;
 
-  usuarioLogueado : Usuario;
-  usuarioLogueado$ : Observable<Usuario>;
-
 
   displayedColumns: string[] = ['id','editar','remover', 'nombre', 'email', 'direccion', 'telefono', 'perfil'];
 
   constructor(public service: UsuarioService,  private router : Router) { }
 
   ngOnInit(): void {
-
-    this.usuarioLogueado$ = this.service.getUsuarioLogueado();
-
-    this.usuarioLogueado$.subscribe((value) => {
-      this.usuarioLogueado = value;
-    })
 
     this.Usuario$ = this.service.data$;
     this.Usuario$.subscribe((elementos) => {

@@ -9,9 +9,9 @@ import { PerfilUsuarioGuard } from 'src/app/Guards/perfil-usuario.guard';
 const rutas : Routes = [
   { path : '', component : IndexUsuarioComponent, children : [
     { path: 'Index', component : ListaUsuarioComponent },    
-    { path: 'Create', canActivate: [PerfilUsuarioGuard], component : AbmUsuarioComponent },
-    { path: 'Update/:parametro', canActivate: [PerfilUsuarioGuard], component : AbmUsuarioComponent },
-    { path: 'Delete/:parametro', canActivate: [PerfilUsuarioGuard], component : AbmUsuarioComponent }]
+    { path: 'Create', component : AbmUsuarioComponent },
+    { path: 'Update/:parametro', component : AbmUsuarioComponent },
+    { path: 'Delete/:parametro', component : AbmUsuarioComponent }]
   },
   {
     path: '',

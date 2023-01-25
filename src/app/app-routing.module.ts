@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MiddleComponent } from './Componentes/Layout/middle/middle.component';
 import { PrimerEntregableComponent } from './Componentes/Layout/Principal/principal.component';
 import { AuthGuard } from './Guards/auth.guard';
+import { PerfilUsuarioGuard } from './Guards/perfil-usuario.guard';
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
       },
       {
         path: 'usuario',
+        canActivate: [PerfilUsuarioGuard],
         loadChildren: () => import('./Componentes/ABMs/Usuarios/usuario-module.module').then(m => m.UsuarioModuleModule),
         data: {
           nombre: 'Productos'
