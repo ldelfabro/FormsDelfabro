@@ -29,6 +29,33 @@
       *ngIf="formularioPrincipal.get('comision')?.errors?.['maxlength']">
       Este campo debe tener como máximo 15 caracteres.</small>
   </p>
+
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Profesor asignado</mat-label>
+      <input matInput placeholder="Profesor asignado" [(ngModel)]="Curso.profesor" formControlName="profesor" >
+    </mat-form-field><br>
+    <small for="colFormLabelSm" class="errorSmall col-form-label col-form-label-sm"
+    *ngIf="formularioPrincipal.get('profesor')?.errors?.['maxlength']">
+    Este campo debe tener como máximo 30 caracteres.</small>
+</p>
+
+<p>
+  <mat-form-field appearance="fill">
+    <mat-label>Cantidad de clases</mat-label>
+    <input matInput placeholder="Cantidad de clases" [(ngModel)]="Curso.cantidadClases" formControlName="cantidadClases" type="number">
+  </mat-form-field><br>
+</p>
+
+
+<p>
+  <mat-form-field appearance="fill">
+    <mat-label>Cantidad de horas</mat-label>
+    <input matInput placeholder="Cantidad de horas" [(ngModel)]="Curso.cantidadHoras" formControlName="cantidadHoras" type="number">
+  </mat-form-field><br>
+</p>
+
+
    </div>
    
   <div class="row" *ngIf="FormType == 'Delete' || FormType == 'View'" style="padding-bottom:20px;">

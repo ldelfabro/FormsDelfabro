@@ -49,7 +49,10 @@ export class AbmCursoComponent implements OnInit {
         this.formularioPrincipal = this.fb.group({
           nombre : ['', [Validators.required, Validators.maxLength(15)]],
           descripcion : ['', [Validators.required, Validators.maxLength(30)]],
-          comision : ['', [Validators.required, Validators.maxLength(15)]]
+          comision : ['', [Validators.required, Validators.maxLength(15)]],
+          cantidadClases : ['', [Validators.required]],
+          cantidadHoras : ['', [Validators.required]],
+          profesor : ['', [Validators.required, Validators.maxLength(30)]]
         });
       }
       else
