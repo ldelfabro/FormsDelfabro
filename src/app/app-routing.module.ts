@@ -36,7 +36,7 @@ const routes: Routes = [
       },
       {
         path: 'usuario',
-        loadChildren: () => import('./Componentes/ABMs/Usuarios/profesor-module.module').then(m => m.UsuarioModuleModule),
+        loadChildren: () => import('./Componentes/ABMs/Usuarios/usuario-module.module').then(m => m.UsuarioModuleModule),
         data: {
           nombre: 'Productos'
         }

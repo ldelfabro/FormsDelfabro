@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipeModuleModule } from 'src/app/Pipes/pipe-module.module';
 import { RouterModule } from '@angular/router';
 import { UsuarioModuleRoutingModule } from './usuario-module-routing.module';
-import {  AbmUsuarioComponent } from './abm-usuarios/abm-usuario.component';
+import { AbmUsuarioComponent} from './abm-usuarios/abm-usuario.component';
 
 @NgModule({
   declarations: [

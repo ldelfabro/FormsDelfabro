@@ -4,13 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListaUsuarioComponent } from './lista/lista.component';
 import { IndexUsuarioComponent } from './index-usuarios/index.component';
 import { AbmUsuarioComponent } from './abm-usuarios/abm-usuario.component';
+import { PerfilUsuarioGuard } from 'src/app/Guards/perfil-usuario.guard';
 
 const rutas : Routes = [
   { path : '', component : IndexUsuarioComponent, children : [
     { path: 'Index', component : ListaUsuarioComponent },    
-    { path: 'Create', component : AbmUsuarioComponent },
-    { path: 'Update/:parametro', component : AbmUsuarioComponent },
-    { path: 'Delete/:parametro', component : AbmUsuarioComponent }]
+    { path: 'Create', canActivate: [PerfilUsuarioGuard], component : AbmUsuarioComponent },
+    { path: 'Update/:parametro', canActivate: [PerfilUsuarioGuard], component : AbmUsuarioComponent },
+    { path: 'Delete/:parametro', canActivate: [PerfilUsuarioGuard], component : AbmUsuarioComponent }]
   },
   {
     path: '',

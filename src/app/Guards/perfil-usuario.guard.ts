@@ -1,41 +1,43 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Usuario } from '../Interfaces/IUsuario';
 import { UsuarioService } from '../Services/usuario.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class PerfilUsuarioGuard implements CanActivate {
 
-  Logueado : boolean;
-  Logueado$ : Observable<boolean>;
-
+  usuarioLogueado : Usuario;
+  usuarioLogueado$ : Observable<Usuario>;
 
   constructor(
     private router: Router,
     private usuarioService : UsuarioService
   ) {
-    this.Logueado$ = this.usuarioService.getLogueado();
+    this.usuarioLogueado$ = this.usuarioService.getUsuarioLogueado();
 
-    this.Logueado$.subscribe((value) => {
-      this.Logueado = value;
+    this.usuarioLogueado$.subscribe((value) => {
+      this.usuarioLogueado = value;
     })
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-            
-      if(this.Logueado){
-        return true;
-      }
-      else{
-        this.router.navigate(['login']);
-        return false;
-      }
-
+   
+debugger;
+    if(this.usuarioLogueado.perfil == "admin"){
+      return true;
+    }
+    else{
+      this.router.navigate(['home/usuario/Index']);
+      return false;
+    }
+  
+  
+  
   }
- 
-
+  
 }

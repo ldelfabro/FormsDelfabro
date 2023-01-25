@@ -16,8 +16,9 @@ export class UsuarioService {
   public logueado$ : Observable<boolean>;
   private logueado = new BehaviorSubject<boolean>(false);
 
-
- // public logueado = false;
+  public _usuarioLogueado : Usuario =  { nombre : '', apellido : '',  id : 0, email : '', pass: '', direccion: '', perfil : 'user', telefono: '' };
+  public usuarioLogueado$ : Observable<Usuario>;
+  private usuarioLogueado = new BehaviorSubject<Usuario>({ nombre : '', apellido : '',  id : 0, email : '', pass: '', direccion: '', perfil : 'user', telefono: '' });
 
   constructor(private httpClient : HttpClient) {
     this.data$ = this.data.asObservable();
@@ -28,11 +29,17 @@ export class UsuarioService {
     this.logueado$ = this.logueado.asObservable();
     this.logueado.next(this._logueado);
 
+    this.usuarioLogueado$ = this.usuarioLogueado.asObservable();
+    this.usuarioLogueado.next(this._usuarioLogueado);
 
    }
 
-   public setLogueado(logueado : boolean){
+   public setLogueado(logueado : boolean, usuarioLogueado : Usuario){
+    this.usuarioLogueado.next(usuarioLogueado);
     this.logueado.next(logueado);
+   }
+   public getUsuarioLogueado() : Observable<Usuario> {
+    return this.usuarioLogueado.asObservable();
    }
    public getLogueado() : Observable<boolean> {
     return this.logueado.asObservable();

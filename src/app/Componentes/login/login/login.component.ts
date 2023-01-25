@@ -35,15 +35,13 @@ export class LoginComponent implements OnInit {
       this.usuarioService.loguear(this.formularioPrincipal.get('email')?.value, this.formularioPrincipal.get('pass')?.value).subscribe(value => {
         console.log(value);
         if(value){
-          this.usuarioService.setLogueado(true);
+          this.usuarioService.setLogueado(true, value);
           this.router.navigate(['/home'])
         }
         else {
           this._errorMsg = "Email o Password inválido(s)";
         }
       });
-
-
       
     }
 

@@ -11,17 +11,28 @@ import { UsuarioService } from 'src/app/Services/usuario.service';
 })
 export class ListaUsuarioComponent implements OnInit {
 
-  Profesores : Usuario [];
-  Profesor$ : Observable<Usuario[]>;
+  Usuarios : Usuario [];
+  Usuario$ : Observable<Usuario[]>;
+
+  usuarioLogueado : Usuario;
+  usuarioLogueado$ : Observable<Usuario>;
+
 
   displayedColumns: string[] = ['id','editar','remover', 'nombre', 'email', 'direccion', 'telefono', 'perfil'];
 
   constructor(public service: UsuarioService,  private router : Router) { }
 
   ngOnInit(): void {
-    this.Profesor$ = this.service.data$;
-    this.Profesor$.subscribe((elementos) => {
-      this.Profesores = elementos;
+
+    this.usuarioLogueado$ = this.service.getUsuarioLogueado();
+
+    this.usuarioLogueado$.subscribe((value) => {
+      this.usuarioLogueado = value;
+    })
+
+    this.Usuario$ = this.service.data$;
+    this.Usuario$.subscribe((elementos) => {
+      this.Usuarios = elementos;
     })
   }
 
