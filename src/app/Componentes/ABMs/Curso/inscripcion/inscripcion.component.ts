@@ -26,7 +26,7 @@ export class InscripcionComponent implements OnInit {
 
   ngOnInit(): void {
 
-
+/*
     this.Alumno$ = this.cursoService.getAlumnosById(this.cursoId);
 
     this.Alumno$.subscribe(value => {
@@ -36,7 +36,7 @@ export class InscripcionComponent implements OnInit {
 
     this.formularioPrincipal = this.fb.group({
       nombre : ['', [Validators.required, Validators.maxLength(15)]]
-    });
+    });*/
   }
 
   
@@ -51,7 +51,7 @@ export class InscripcionComponent implements OnInit {
   }
 
   removerAlumno(id : number) : void {
-    this.cursoService.removeAlumno(this.cursoId, id);
+  //  this.cursoService.removeAlumno(this.cursoId, id);
   }
 
   pendienteImplementacion() : void {

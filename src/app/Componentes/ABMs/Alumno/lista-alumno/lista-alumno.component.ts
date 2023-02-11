@@ -5,6 +5,12 @@ import { Router } from '@angular/router';
 import { AlumnoService } from 'src/app/Services/alumno.service';
 import { Usuario } from 'src/app/Interfaces/IUsuario';
 import { UsuarioService } from 'src/app/Services/usuario.service';
+import { InscripcionService } from 'src/app/Services/inscripcion.service';
+import { CursoService } from 'src/app/Services/curso.service';
+import { Curso } from 'src/app/Interfaces/ICurso';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducer';
+import { loginStateUserSelector } from 'src/app/store/login/login.selectors';
 
 @Component({
   selector: 'app-lista-alumno',
@@ -16,25 +22,40 @@ export class ListaAlumnoComponent implements OnInit {
   Alumnos : Alumno [];
   Alumnos$ : Observable<Alumno[]>;
 
-  usuarioLogueado : Usuario;
-  usuarioLogueado$ : Observable<Usuario>;
+  public usuarioLogueado : Observable<Usuario | null>;
 
-  displayedColumns: string[] = ['id','editar','remover', 'nombre', 'telefono', 'fechaNacimiento', 'email', 'provincia', 'localidad'];
+  displayedColumns: string[] = ['id','editar','remover', 'nombre', 'telefono', 'fechaNacimiento', 'email', 'provincia', 'localidad', 'cursos'];
 
-  constructor(private alumnoService: AlumnoService, private usuarioService: UsuarioService,  private router : Router) { 
+  constructor(private readonly store : Store<AppState>, private cursoService: CursoService,private inscripcionService: InscripcionService, private alumnoService: AlumnoService, private usuarioService: UsuarioService,  private router : Router) { 
     this.Alumnos = [];
+    this.usuarioLogueado = this.store.select(loginStateUserSelector)
   }
   ngOnInit(): void {
+
+
     this.Alumnos$ = this.alumnoService.data$;
     this.Alumnos$.subscribe((alumnos) => {
-      this.Alumnos = alumnos;
-    })
+      
+      this.Alumnos = alumnos;   
+      var _cursos : Curso [];  
 
-    this.usuarioLogueado$ = this.usuarioService.getUsuarioLogueado();
-    this.usuarioLogueado$.subscribe((value) => {
-      this.usuarioLogueado = value;
-    })
+      this.cursoService.getAll().subscribe((cursos) => {
+        _cursos = cursos;
+      })
 
+      this.inscripcionService.getAll().subscribe((inscripciones) => {
+        this.Alumnos.forEach(function(alumno){
+          alumno.Cursos = [];
+          for(let p = 0; p < inscripciones.length; p++){
+            if(inscripciones[p].IdAlumno == alumno.id) {
+              let _curso = _cursos.filter( c=> c.id == inscripciones[p].IdCurso)[0];
+              alumno.Cursos.push(_curso);
+            }
+          }
+
+        })       
+      })
+    })
 
   }
   actualizar(id : number) : void {
@@ -46,4 +67,5 @@ export class ListaAlumnoComponent implements OnInit {
   CrearNuevo() : void {
     this.router.navigate(['/home/alumno/Create'])
   }
+
 }

@@ -9,11 +9,8 @@ import {  Observable } from 'rxjs';
 })
 export class PrimerEntregableComponent implements OnInit {
 
-  public Curse : Observable<Curso>
-  public Curso : Curso;
   public evento : string = 'ABMINICIO';
   constructor() { 
-    this.Curso = { descripcion : '', comision: '', id : 0, profesor : '', nombre : "", cantidadClases : 0, cantidadHoras : 0 }
   }
 
   ngOnInit(): void {

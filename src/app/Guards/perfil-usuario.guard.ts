@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Usuario } from '../Interfaces/IUsuario';
 import { UsuarioService } from '../Services/usuario.service';
+import { AppState } from '../store/app.reducer';
+import { loginStateUserSelector } from '../store/login/login.selectors';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PerfilUsuarioGuard implements CanActivate {
 
-  usuarioLogueado : Usuario;
-  usuarioLogueado$ : Observable<Usuario>;
+  UsuarioLogueado : Usuario | null;
 
   constructor(
     private router: Router,
-    private usuarioService : UsuarioService
+    private readonly store : Store<AppState>
   ) {
-    this.usuarioLogueado$ = this.usuarioService.getUsuarioLogueado();
-
-    this.usuarioLogueado$.subscribe((value) => {
-      this.usuarioLogueado = value;
+    this.store.select(loginStateUserSelector).subscribe((value) => {
+      this.UsuarioLogueado = value;
     })
   }
 
@@ -28,7 +28,7 @@ export class PerfilUsuarioGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
    
 debugger;
-    if(this.usuarioLogueado.perfil == "admin"){
+    if(this.UsuarioLogueado?.perfil == "admin"){
       return true;
     }
     else{

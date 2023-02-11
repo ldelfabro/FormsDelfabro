@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, of } from 'rxjs';
-import { Alumno } from '../Interfaces/IAlumno';
+import { environment } from 'src/environments/environment';
 import { Curso } from '../Interfaces/ICurso';
 
 @Injectable({
@@ -8,7 +9,55 @@ import { Curso } from '../Interfaces/ICurso';
 })
 export class CursoService {
 
-  public _entity : Curso[] = [];
+  public data$ : Observable<Curso[]>;
+  private data = new BehaviorSubject<Curso[]>([]);
+
+  constructor(private httpClient : HttpClient) {
+    this.data$ = this.data.asObservable();
+    this.getAll().subscribe(cursos => {
+      this.data.next(cursos);
+    });
+
+   }
+
+   public getAll() : Observable<Curso[]> {
+    return this.httpClient.get<Curso[]>(environment.baseUrl_2 + 'curso');
+   }
+   public getById(id: number) : Observable<Curso> {
+    return this.httpClient.get<Curso[]>(environment.baseUrl_2 + 'curso').pipe(map((value : Curso[]) => value.filter(c => c.id == id)[0]));
+   }
+
+   public add(curso : Curso){
+    this.httpClient.post(`${environment.baseUrl_2}curso`, curso).subscribe({
+      next: _ => {
+        let nuevaLista = this.data.getValue();
+        nuevaLista.push(curso);
+        this.data.next(nuevaLista);
+      },
+      error: _ => {
+        alert('Error!!');
+      }
+    });
+   }
+
+  public update(curso : Curso) {
+    this.httpClient.put(`${environment.baseUrl_2}curso/${curso.id}`, curso).subscribe(_ => {
+      let nuevaLista = this.data.getValue().map(p => p.id === curso.id ? curso : p);
+      this.data.next(nuevaLista);
+    });
+  }
+
+  public remove(id: number) {
+    this.httpClient.delete(`${environment.baseUrl_2}curso/${id}`).subscribe(_ => {
+      let nuevaLista = this.data.getValue().filter( p => p.id !== id);
+      this.data.next(nuevaLista);
+    });
+  }
+
+
+
+
+ /* public _entity : Curso[] = [];
   public data$ : Observable<Curso[]>;
   private data = new BehaviorSubject<Curso[]>([]);
  
@@ -63,7 +112,8 @@ public removeAlumno(id: number, idAlumno : number){
   _curso.alumnos = _alumnosCurso;
   this._entity.filter(c => c.id == id)[0] = _curso;
 
-  this.data.next(this._entity);*/
-}
+  this.data.next(this._entity);
+
+}*/
 
 }

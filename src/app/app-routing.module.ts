@@ -40,21 +40,28 @@ const routes: Routes = [
         canActivate: [PerfilUsuarioGuard],
         loadChildren: () => import('./Componentes/ABMs/Usuarios/usuario-module.module').then(m => m.UsuarioModuleModule),
         data: {
-          nombre: 'Productos'
+          nombre: 'Usuarios'
         }
       },
       {
         path: 'curso',
         loadChildren: () => import('./Componentes/ABMs/Curso/curso.module').then(m => m.CursoModule),
         data: {
-          nombre: 'Proveedores'
+          nombre: 'Cursos'
         }
       },
       {
         path: 'alumno',
         loadChildren: () => import('./Componentes/ABMs/Alumno/alumno-module.module').then(m => m.AlumnoModuleModule),
         data: {
-          nombre: 'Productos'
+          nombre: 'Alumnos'
+        }
+      },
+      {
+        path: 'inscripcion',
+        loadChildren: () => import('./Componentes/ABMs/Inscripcion/inscripcion.module').then(m => m.InscripcionModule),
+        data: {
+          nombre: 'Inscripciones'
         }
       }
     ]

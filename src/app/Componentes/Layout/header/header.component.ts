@@ -4,6 +4,9 @@ import { Usuario } from 'src/app/Interfaces/IUsuario';
 import { UsuarioService } from 'src/app/Services/usuario.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AppState } from 'src/app/store/app.reducer';
+import { Store } from '@ngrx/store';
+import { loginStateUserSelector } from 'src/app/store/login/login.selectors';
 
 @Component({
   selector: 'app-header',
@@ -16,21 +19,15 @@ export class HeaderComponent implements OnInit {
   @Input() Profesores : Usuario [];
 
   @Output() evento = new EventEmitter<string>();
+  public usuarioLogueado : Observable<Usuario | null>;
 
-  usuarioLogueado : Usuario;
-  usuarioLogueado$ : Observable<Usuario>;
 
   public errorMessage = '';
-  constructor(public dialog: MatDialog, private usuarioService : UsuarioService, private router : Router) { }
+  constructor(private readonly store : Store<AppState>,public dialog: MatDialog, private usuarioService : UsuarioService, private router : Router) {
+    this.usuarioLogueado = this.store.select(loginStateUserSelector)
+  }
 
   ngOnInit(): void {
-
-    this.usuarioLogueado$ = this.usuarioService.getUsuarioLogueado();
-
-    this.usuarioLogueado$.subscribe((value) => {
-      this.usuarioLogueado = value;
-    })
-
 
   }
 

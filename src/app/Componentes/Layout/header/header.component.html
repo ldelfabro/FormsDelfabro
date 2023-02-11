@@ -5,7 +5,7 @@
             <mat-icon>menu</mat-icon>
         </button>
 
-        <span>Sistema de control de alumnos: Bienvenido</span>
+        <span>Sistema de control de alumnos: Bienvenido {{(usuarioLogueado | async)?.nombre}} {{(usuarioLogueado | async)?.apellido}}</span>
         <span class="example-spacer"></span>       
     </mat-toolbar>
 </p>
@@ -18,7 +18,7 @@
         <mat-icon>home</mat-icon>
         <span>Inicio</span>
     </button> 
-    <button mat-menu-item routerLink="usuario/Index" style="min-width: 180px;" *ngIf="usuarioLogueado.perfil == 'admin'">
+    <button mat-menu-item routerLink="usuario/Index" style="min-width: 180px;" *ngIf="(this.usuarioLogueado | async)?.perfil == 'admin'">
       <mat-icon>assignment_ind</mat-icon>
       <span>Usuarios</span>
     </button>
@@ -29,6 +29,10 @@
     <button mat-menu-item  routerLink="curso/Index" style="min-width: 180px;">
         <mat-icon>school</mat-icon>
         <span>Cursos</span>
+    </button> 
+    <button mat-menu-item  routerLink="inscripcion/Index" style="min-width: 180px;">
+        <mat-icon>group_add</mat-icon>
+        <span>Inscripciones</span>
     </button> 
     <button mat-menu-item  (click)="Desloguear()">
         <mat-icon>logout</mat-icon>

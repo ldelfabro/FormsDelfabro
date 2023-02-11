@@ -56,7 +56,7 @@ export class ModalAlumnoIngresarComponent implements OnInit {
   onSubmit() : void {
     if(this.formularioPrincipal.valid){
       let alumnoIngresar : Alumno = this.formularioPrincipal.get('alumnos')?.value;
-      this.cursoService.addAlumno(this.Curso.id, alumnoIngresar);
+    //  this.cursoService.addAlumno(this.Curso.id, alumnoIngresar);
       this.dialogRef.close();
     }
   }

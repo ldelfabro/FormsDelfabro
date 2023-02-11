@@ -1,3 +1,5 @@
+import { Curso } from "./ICurso";
+
 export interface Alumno {
     id : number,
     nombre : string,
@@ -7,5 +9,6 @@ export interface Alumno {
     email : string,
     provincia : string,
     localidad : string,    
-    perfil : string
+    perfil : string,
+    Cursos : Curso []
 }

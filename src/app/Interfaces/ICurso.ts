@@ -7,5 +7,6 @@ export interface Curso {
     descripcion : string,
     cantidadHoras : number,
     cantidadClases : number,
-    profesor : string //profesor asignado
+    profesor : string, //profesor asignado,
+    cantidadAlumnoInscriptos : number
 }
