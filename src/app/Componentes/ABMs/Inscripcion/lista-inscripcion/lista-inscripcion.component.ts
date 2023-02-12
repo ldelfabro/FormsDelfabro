@@ -19,7 +19,7 @@ export class ListaInscripcionComponent implements OnInit {
   Cursos : Curso [];
   Cursos$ : Observable<Curso[]>;
 
-  displayedColumns: string[] = [ 'legajo', 'nombre', 'comision'];
+  displayedColumns: string[] = ['id', 'legajo', 'nombre', 'comision'];
 
   constructor(private router : Router, private cursoService: CursoService) { 
     
