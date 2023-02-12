@@ -11,6 +11,7 @@ import { Curso } from 'src/app/Interfaces/ICurso';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducer';
 import { loginStateUserSelector } from 'src/app/store/login/login.selectors';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-lista-alumno',
@@ -19,7 +20,7 @@ import { loginStateUserSelector } from 'src/app/store/login/login.selectors';
 })
 export class ListaAlumnoComponent implements OnInit {
 
-  Alumnos : Alumno [];
+  Alumnos : Alumno [] = [];
   Alumnos$ : Observable<Alumno[]>;
 
   public usuarioLogueado : Observable<Usuario | null>;
@@ -27,14 +28,12 @@ export class ListaAlumnoComponent implements OnInit {
   displayedColumns: string[] = ['id','editar','remover', 'nombre', 'telefono', 'fechaNacimiento', 'email', 'provincia', 'localidad', 'cursos'];
 
   constructor(private readonly store : Store<AppState>, private cursoService: CursoService,private inscripcionService: InscripcionService, private alumnoService: AlumnoService, private usuarioService: UsuarioService,  private router : Router) { 
-    this.Alumnos = [];
     this.usuarioLogueado = this.store.select(loginStateUserSelector)
   }
   ngOnInit(): void {
 
-
     this.Alumnos$ = this.alumnoService.data$;
-    this.Alumnos$.subscribe((alumnos) => {
+    this.alumnoService.getAll().subscribe((alumnos) => {
       
       this.Alumnos = alumnos;   
       var _cursos : Curso [];  
@@ -52,8 +51,7 @@ export class ListaAlumnoComponent implements OnInit {
               alumno.Cursos.push(_curso);
             }
           }
-
-        })       
+        })
       })
     })
 

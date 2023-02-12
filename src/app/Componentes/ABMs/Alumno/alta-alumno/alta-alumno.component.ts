@@ -15,7 +15,7 @@ import { AlumnoService } from 'src/app/Services/alumno.service';
 })
 export class AltaAlumnoComponent implements OnInit {
 
-  Alumno : Alumno;
+  Alumno : Alumno = { nombre : '', apellido : '', telefono : '', id : 0, email : '', fechaNacimiento : new Date(), provincia : '', localidad : '', perfil: '', Cursos : [] }
  
   public FormType : string;
 
@@ -82,7 +82,7 @@ export class AltaAlumnoComponent implements OnInit {
         this.Alumno.provincia = this.formularioPrincipal.get('provincia')?.value;
         this.Alumno.localidad = this.formularioPrincipal.get('localidad')?.value;
         this.alumnoService.add(this.Alumno);
-        this.router.navigate(['/home/alumno/Index'])
+        this.go_next('/home/alumno/Index')
       }
       if(this.FormType == "Update") {
         this.Alumno.nombre = this.formularioPrincipal.get('nombre')?.value;
@@ -93,16 +93,22 @@ export class AltaAlumnoComponent implements OnInit {
         this.Alumno.provincia = this.Alumno.provincia;
         this.Alumno.localidad = this.Alumno.localidad;
         this.alumnoService.update(this.Alumno);
-        this.router.navigate(['/home/alumno/Index'])
+        this.go_next('/home/alumno/Index')
       }
       if(this.FormType == "Delete") {
         this.alumnoService.remove(this.Alumno.id);
-        this.router.navigate(['/home/alumno/Index'])
-
+        this.go_next('/home/alumno/Index')
       }
     }
 
   }
+
+  go_next(url: string){
+    setTimeout(() => {
+      this.router.navigate([url])
+    }
+      , 500);
+}
 
 }
 

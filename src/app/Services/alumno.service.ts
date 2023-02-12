@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Alumno } from '../Interfaces/IAlumno';
-import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-
 @Injectable({
   providedIn: 'root'
 })

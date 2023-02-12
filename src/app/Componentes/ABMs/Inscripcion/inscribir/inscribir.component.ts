@@ -45,15 +45,12 @@ export class InscribirComponent implements OnInit {
 
   dataSource = new MatTableDataSource<Alumno>();
 
-  @ViewChild(MatSort) sort: MatSort;
-
   constructor(private activateRoute : ActivatedRoute, 
     private fb : FormBuilder, 
     private cursoService: CursoService,
     private inscripcionService: InscripcionService, 
     private alumnoService: AlumnoService,
-    private readonly store : Store<AppState>,
-    private _liveAnnouncer: LiveAnnouncer) {
+    private readonly store : Store<AppState>) {
        this.store.select(loginStateUserSelector).subscribe((value) => {
         if(value)
           this.usuarioLogueado = value;
@@ -146,18 +143,6 @@ export class InscribirComponent implements OnInit {
       this.AlumnosInscriptos = this.AlumnosInscriptos.filter(c => c.id != id)
       this.dataSource.data = this.AlumnosInscriptos;
     })
-  }
-
-  announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
   }
 
 }
