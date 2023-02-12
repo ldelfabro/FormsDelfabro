@@ -11,21 +11,15 @@ import { UsuarioService } from 'src/app/Services/usuario.service';
 })
 export class ListaUsuarioComponent implements OnInit {
 
-  Usuarios : Usuario [];
-  Usuario$ : Observable<Usuario[]>;
-
+  public Usuarios : Observable<Usuario[]>;
 
   displayedColumns: string[] = ['id','editar','remover', 'nombre', 'email', 'direccion', 'telefono', 'perfil'];
 
-  constructor(public service: UsuarioService,  private router : Router) { }
-
-  ngOnInit(): void {
-
-    this.Usuario$ = this.service.data$;
-    this.Usuario$.subscribe((elementos) => {
-      this.Usuarios = elementos;
-    })
+  constructor(public service: UsuarioService,  private router : Router) { 
+    this.Usuarios = service.getAll();
   }
+
+  ngOnInit(): void {}
 
   actualizar(id : number) : void {
     this.router.navigate(['/home/usuario/Update/' + id])

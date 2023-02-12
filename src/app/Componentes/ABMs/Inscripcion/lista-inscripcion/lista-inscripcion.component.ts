@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Curso } from 'src/app/Interfaces/ICurso';
 import { Inscripcion } from 'src/app/Interfaces/IInscripciones';
@@ -20,7 +21,7 @@ export class ListaInscripcionComponent implements OnInit {
 
   displayedColumns: string[] = [ 'legajo', 'nombre', 'comision'];
 
-  constructor(private inscripcionService: InscripcionService, private cursoService: CursoService) { 
+  constructor(private router : Router, private cursoService: CursoService) { 
     
      this.Cursos$ = this.cursoService.data$;
      this.Cursos$.subscribe((value) => {
@@ -31,10 +32,12 @@ export class ListaInscripcionComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  CrearNuevo() {
+  inscribir(id: number){
+    this.router.navigate(['/home/inscripcion/Inscribir/' + id])
   }
-  Actualizar (id: number) {
+  legajo(id: number){
+    this.router.navigate(['/home/inscripcion/Legajo/' + id])
   }
-  Eliminar (id: number) {
-  }
+
+
 }

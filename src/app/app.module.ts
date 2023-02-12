@@ -11,6 +11,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { appReducer } from './store/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { appReducer } from './store/app.reducer';
     HttpClientModule,
     LayoutModuleModule,
  StoreModule.forRoot(appReducer, {}),
- StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+ StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+ EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]

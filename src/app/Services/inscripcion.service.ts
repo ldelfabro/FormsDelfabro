@@ -26,6 +26,11 @@ export class InscripcionService {
    public getById(id: number) : Observable<Inscripcion> {
     return this.httpClient.get<Inscripcion[]>(environment.baseUrl_2 + 'inscripcion').pipe(map((value : Inscripcion[]) => value.filter(c => c.id == id)[0]));
    }
+   public getByCursoId(id: number) : Observable<Inscripcion[]> {
+    return this.httpClient.get<Inscripcion[]>(environment.baseUrl_2 + 'inscripcion').pipe(map((value : Inscripcion[]) => value.filter(c => c.IdCurso == id)));
+   }
+
+
 
    public add(curso : Inscripcion){
     this.httpClient.post(`${environment.baseUrl_2}inscripcion`, curso).subscribe({

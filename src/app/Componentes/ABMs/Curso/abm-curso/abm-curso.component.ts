@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Curso } from 'src/app/Interfaces/ICurso';
 import { CursoService } from 'src/app/Services/curso.service';
-import { ModalAlumnoIngresarComponent } from '../modal-alumno-ingresar/modal-alumno-ingresar.component';
 
 @Component({
   selector: 'app-abm-curso',

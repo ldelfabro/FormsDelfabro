@@ -7,22 +7,13 @@ import { MaterialModule } from 'src/app/modules/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipeModuleModule } from 'src/app/Pipes/pipe-module.module';
 import { CursoRoutingModule } from './curso-routing.module';
-import { ModalAlumnoIngresarComponent } from './modal-alumno-ingresar/modal-alumno-ingresar.component';
-import { InscripcionComponent } from './inscripcion/inscripcion.component';
-import { InscripcionMateriaComponent } from './inscripcion-materia/inscripcion-materia.component';
-import { InscripcionProfesoresComponent } from './inscripcion-profesores/inscripcion-profesores.component';
-
 
 
 @NgModule({
   declarations: [
     IndexCursoComponent,
     ListaCursoComponent,
-    AbmCursoComponent,
-    ModalAlumnoIngresarComponent,
-    InscripcionComponent,
-    InscripcionMateriaComponent,
-    InscripcionProfesoresComponent
+    AbmCursoComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +22,6 @@ import { InscripcionProfesoresComponent } from './inscripcion-profesores/inscrip
     ReactiveFormsModule,
     PipeModuleModule,
     CursoRoutingModule
-
   ]
 })
 export class CursoModule { }

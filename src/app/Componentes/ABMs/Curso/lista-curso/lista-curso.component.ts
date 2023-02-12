@@ -17,35 +17,16 @@ import { loginStateUserSelector } from 'src/app/store/login/login.selectors';
 })
 export class ListaCursoComponent implements OnInit {
   
-  Cursos : Curso [];
-  Curso$ : Observable<Curso[]>;
   public usuarioLogueado : Observable<Usuario | null>;
-
-  displayedColumns: string[] = ['id', 'editar','remover', 'nombre',  'descripcion', 'comision', 'cantidadClases', 'cantidadHoras', 'cantidadAlumnosInscriptos'];
+  public Cursos  : Observable<Curso[]>;
+  displayedColumns: string[] = ['id', 'editar','remover', 'nombre',  'descripcion', 'comision', 'cantidadClases', 'cantidadHoras'];
 
   constructor(private readonly store : Store<AppState>, public inscripcionService: InscripcionService, public usuarioService: UsuarioService,  private service: CursoService,  private router : Router) {
-    this.usuarioLogueado = this.store.select(loginStateUserSelector)
+    this.usuarioLogueado = this.store.select(loginStateUserSelector);
+    this.Cursos = service.getAll();
    }
 
-  ngOnInit(): void {
-    this.Curso$ = this.service.data$;
-
-    this.Curso$.subscribe((cursos) => {
-      
-      this.Cursos = cursos;
-
-      this.inscripcionService.getAll().subscribe((inscripciones) => {        
-        
-        this.Cursos.forEach(function(element){
-          element.cantidadAlumnoInscriptos = inscripciones.filter(c => c.IdCurso == element.id).length;
-        })         
-
-      })
-
-    })
-
- 
-  }
+  ngOnInit(): void {}
 
   actualizar(id : number) : void {
     this.router.navigate(['/home/curso/Update/' + id])

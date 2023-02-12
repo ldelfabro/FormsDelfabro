@@ -5,9 +5,9 @@
 </div>
 <div class="row" style="margin-bottom: 100px;">
     <div class="form-group col-md 10">
-      <i *ngIf="Usuarios.length == 0">No se encontraron elementos registrados</i>
+      <i  *ngIf="(this.Usuarios | async)?.length != 0">No se encontraron elementos registrados</i>
 
-        <table *ngIf="Usuarios.length > 0" mat-table [dataSource]="Usuarios" class="mat-elevation-z8">
+        <table *ngIf="(this.Usuarios | async)?.length != 0" mat-table [dataSource]="Usuarios" class="mat-elevation-z8">
 
             <ng-container matColumnDef="id">
               <th mat-header-cell *matHeaderCellDef> ID </th>
